@@ -96,20 +96,22 @@ export function AnimationListGridItem({ arg }) {
   return (
     <>
       <NextLink href={'#' + arg.tag }>
-        <GridItem
-          w='100%'
-          p={4}
-          border='1px solid #333'
-          borderRadius={5}
-        >
-          <Image src={ '/images/presentation/animation/' + arg.path + '.svg' } width={arg.width} height={arg.height} alt={arg.name} />
-          <Text
-            fontSize='small'
-            fontWeight='bold'
+        <a>
+          <GridItem
+            w='100%'
+            p={4}
+            border='1px solid #333'
+            borderRadius={5}
           >
-            { arg.name }
-          </Text>
-        </GridItem>
+            <Image src={ '/images/presentation/animation/' + arg.path + '.svg' } width={arg.width} height={arg.height} alt={arg.name} />
+            <Text
+              fontSize='small'
+              fontWeight='bold'
+            >
+              { arg.name }
+            </Text>
+          </GridItem>
+        </a>
       </NextLink>
     </>
   )
@@ -122,20 +124,22 @@ export function AnimationListGridBodyItem({ arg }) {
       <NextLink
         href={'/presentation/animation/children/' + arg.path}
       >
-        <GridItem
-          w='100%'
-          p={4}
-          border='1px solid #333'
-          borderRadius={5}
-        >
-          <Image src={ '/images/presentation/animation/' + arg.path + '.svg' } width={arg.width} height={arg.height} alt={arg.name} />
-          <Text
-            fontSize='small'
-            fontWeight='bold'
+        <a>
+          <GridItem
+            w='100%'
+            p={4}
+            border='1px solid #333'
+            borderRadius={5}
           >
-            { arg.name }
-          </Text>
-        </GridItem>
+            <Image src={ '/images/presentation/animation/' + arg.path + '.svg' } width={arg.width} height={arg.height} alt={arg.name} />
+            <Text
+              fontSize='small'
+              fontWeight='bold'
+            >
+              { arg.name }
+            </Text>
+          </GridItem>
+        </a>
       </NextLink>
     </>
   )
