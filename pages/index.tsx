@@ -3,35 +3,36 @@ import style from '../styles/home.module.scss'
 
 import OurServices from '../components/home/OurServices'
 import PartnersCompany from '../components/home/PartnersCompany'
+import SkillArea from '../components/home/SkillArea'
 
 import { Box, Container } from '@chakra-ui/react'
 
 export default function Home() {
   return (
     <Layout isHome>
-      <main>
-        <Box className={style.contentsArea}>
-          <Container
-            py={2}
-            maxW='container.lg'
-          >
+      <Box className={style.contentsArea}>
+        <Container
+          py={2}
+          maxW='container.lg'
+        >
 
-            <OurServices />
+          <OurServices />
 
-            <hr />
+          <SkillArea />
 
-            <ul>
-              <li>tech blog</li>
-              <li>service(tinywest/8beat)</li>
-              <li>blog</li>
-              <li>partner</li>
-            </ul>
+          <hr />
 
-            <PartnersCompany />
+          <ul>
+            <li>tech blog</li>
+            <li>service(tinywest/8beat)</li>
+            <li>blog</li>
+            <li>partner</li>
+          </ul>
 
-          </Container>
-        </Box>
-      </main>
+          <PartnersCompany />
+
+        </Container>
+      </Box>
     </Layout>
   )
 }

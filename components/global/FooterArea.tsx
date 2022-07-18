@@ -7,8 +7,11 @@ import {
   Heading,
   List,
   ListItem,
-  Text
+  Text,
+  HStack,
+  Square
 } from '@chakra-ui/react'
+import NextLink from 'next/link'
 import Logo from '../../public/images/global/logo_yoko.svg'
 
 const yyyy = new Date().getFullYear()
@@ -64,8 +67,11 @@ export default function FooterArea() {
             </List>
           </GridItem>
 
-          <GridItem>
-            <Text fontWeight='bold' mb='.5rem'>HOGE</Text>
+          <GridItem w='100%' h='100%'>
+            <Text fontWeight='bold' mb='.5rem'>DATA</Text>
+            <List styleType='none'>
+              <ListItem><NextLink href="/presentation">Presentation</NextLink></ListItem>
+            </List>
           </GridItem>
 
         </Grid>
