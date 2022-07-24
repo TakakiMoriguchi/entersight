@@ -5,29 +5,62 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import { styled } from '@chakra-ui/react'
-import Image from 'next/image'
 import SectionTitle from '../global/SectionTitle'
+
+import React, { useState, useEffect } from 'react'
+import NextImage from 'next/image'
 import style from '../../styles/components/skillArea.module.scss'
 
-// skillsフォルダ以下のファイルをまとめて取得して配列にしたい
 const language = [
-  { "name": "html5", "path": "" },
-  { "name": "css3", "path": "" },
-  { "name": "javascript", "path": "" },
-  { "name": "typescript", "path": "" },
-  { "name": "php", "path": "" },
-  { "name": "laravel", "path": "" },
-  { "name": "python", "path": "/images/skills/python.svg" },
-  { "name": "go", "path": "" },
-  { "name": "rust", "path": "" },
-  { "name": "photoshop", "path": "" },
-  { "name": "html", "path": "" },
-  { "name": "html", "path": "" },
-  { "name": "html", "path": "" },
+  'css3',
+  'express',
+  'github',
+  'golang',
+  'html5',
+  'illustrator',
+  'javascript',
+  'laravel',
+  'mariadb',
+  'markdown',
+  'mysql',
+  'next',
+  'node',
+  'nuxt',
+  'pandas',
+  'photoshop',
+  'php',
+  'postgresql',
+  'python',
+  'react',
+  'reactrouter',
+  'rust',
+  'sass',
+  'sketch',
+  'typescript',
+  'vue',
+  'vuetify'
 ]
 
 export default function SkillArea() {
+
+  type langType = number[]
+  const totalCount = 27
+  const [lang, setLang] = useState<langType>([0, 1, 2, 3, 4, 5, 6])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let langArray: number[] = Array()
+      for(let i=0; langArray.length<7; i++){
+        let randNum = Math.floor(Math.random() * totalCount)
+        if(!langArray.includes(randNum)){
+          langArray.push(randNum)
+        }
+      }
+      setLang(langArray)
+    }, 3000)
+    return () => clearInterval(interval)
+  })
+
   return (
     <>
 
@@ -50,49 +83,21 @@ export default function SkillArea() {
                     &nbsp;
                   </div>
                 </div>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    <img src='/images/skills/python.svg' width='100px' height='100px' />
-                  </div>
-                </div>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    テスト
-                  </div>
-                </div>
+                <Honeycomb num={lang[0]} />
+                <Honeycomb num={lang[1]} />
               </HStack>
             </Center>
             <Center mb='58px'>
               <HStack>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    テスト
-                  </div>
-                </div>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    テスト
-                  </div>
-                </div>
+                <Honeycomb num={lang[2]} />
+                <Honeycomb num={lang[3]} />
               </HStack>
             </Center>
             <Center>
               <HStack>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    テスト
-                  </div>
-                </div>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    テスト
-                  </div>
-                </div>
-                <div className={style.hexagon_out}>
-                  <div className={style.hexagon_inner}>
-                    テスト
-                  </div>
-                </div>
+                <Honeycomb num={lang[4]} />
+                <Honeycomb num={lang[5]} />
+                <Honeycomb num={lang[6]} />
               </HStack>
             </Center>
           </Box>
@@ -113,6 +118,22 @@ export default function SkillArea() {
         </Box>
 
       </Stack>
+    </>
+  )
+}
+
+function Honeycomb({ num }) {
+  return(
+    <>
+      <div className={style.hexagon_out}>
+        <div className={style.hexagon_inner}>
+          <NextImage
+            src={ '/images/skills/' + language[num] +'.svg' }
+            width='100px'
+            height='100px'
+          />
+        </div>
+      </div>
     </>
   )
 }

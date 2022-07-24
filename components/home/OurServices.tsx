@@ -7,6 +7,7 @@ import SectionTitle from '../global/SectionTitle'
 
 const WorkApi = [
   {
+    id: "1",
     date: "2022-07-18",
     title: "JAMstackブログ構築",
     sub_title: "最先端技術を使用した、高速なWEBサイトを構築します。",
@@ -18,6 +19,7 @@ const WorkApi = [
     tag: ['HP制作', 'web']
   },
   {
+    id: "2",
     date: "2022-07-18",
     title: "JAMstackブログ構築",
     sub_title: "最先端技術を使用した、高速なWEBサイトを構築します。",
@@ -29,6 +31,7 @@ const WorkApi = [
     tag: ['HP制作', 'web']
   },
   {
+    id: "3",
     date: "2022-07-18",
     title: "JAMstackブログ構築",
     sub_title: "最先端技術を使用した、高速なWEBサイトを構築します。",
@@ -40,6 +43,7 @@ const WorkApi = [
     tag: ['HP制作', 'web']
   },
   {
+    id: "4",
     date: "2022-07-18",
     title: "JAMstackブログ構築",
     sub_title: "最先端技術を使用した、高速なWEBサイトを構築します。",
@@ -78,13 +82,11 @@ export default function OurServices() {
           p={5}
         >
           <Stack>
-            { WorkApi.map((val, key) => (
-              <>
-                <Box p={2}>
-                  <Text fontWeight='bold'>{ val.title }</Text>
-                  <Text>{ val.sub_title }</Text>
-                </Box>
-              </>
+            { WorkApi.map((val) => (
+              <Box p={2} key={val.id}>
+                <Text fontWeight='bold'>{ val.title }</Text>
+                <Text>{ val.sub_title }</Text>
+              </Box>
             ))}
           </Stack>
         </Box>
