@@ -11,7 +11,7 @@ import { ArrowLeftIcon } from '@chakra-ui/icons'
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { AnimationChildren } from '../../../../data/animationListChildren'
+import { AnimationChildren } from '../../../data/animationListChildren'
 
 export default function Home() {
   const router = useRouter()
