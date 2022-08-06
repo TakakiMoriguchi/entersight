@@ -9,7 +9,8 @@ import {
   ListItem,
   Text,
   HStack,
-  Square
+  Square,
+  SimpleGrid
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Logo from '../../public/images/global/logo_yoko.svg'
