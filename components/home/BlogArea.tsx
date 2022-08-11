@@ -1,8 +1,13 @@
-import { Box, Text, HStack, Grid, GridItem, SimpleGrid } from "@chakra-ui/react"
+import { 
+  Box, 
+  Text,
+  SimpleGrid 
+} from "@chakra-ui/react"
+import SectionTitle from '../global/SectionTitle'
 
 export default function BlogArea () {
 
-  function formatDate(dt) {
+  function formatDate(dt:any) {
     var y = dt.getFullYear();
     var m = ('00' + (dt.getMonth()+1)).slice(-2);
     var d = ('00' + dt.getDate()).slice(-2);
@@ -71,8 +76,17 @@ export default function BlogArea () {
 
   return (
     <>
+      <Box
+        py='1rem'
+      >
+        <SectionTitle
+          arg="BROG"
+          sub="We are always on the cutting edge of technology."
+          align="center"
+        />
+      </Box>
       <SimpleGrid columns={[2, 3, 4]} spacing={[5]}> 
-        { blogApi.data.map  ((val) => (
+        { blogApi.data.map  ((val:any) => (
           <>
             <Box 
               w='100%' 
