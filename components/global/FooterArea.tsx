@@ -58,10 +58,10 @@ export default function FooterArea() {
           <GridItem w='100%' h='100%'>
             <Text fontWeight='bold' mb='.5rem'>PRODUCTS</Text>
             <List styleType='none'>
-              <ListItem>
+              <ListItem _hover={{ color: 'yellow'  }}>
                 <a href='https://tinywest.net'>tinyWEST</a>
               </ListItem>
-              <ListItem>
+              <ListItem _hover={{ color: 'yellow'  }}>
                 <a href='https://8beat.net'>8Beat</a>
               </ListItem>
             </List>
