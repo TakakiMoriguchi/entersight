@@ -1,0 +1,9 @@
+@import "../variables.scss";
+
+.serviceArea a {
+  text-decoration: none;
+
+  &:hover{
+    color: $main-color;
+  }
+}
