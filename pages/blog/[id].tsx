@@ -1,4 +1,4 @@
-export default function BlogId({ blog }) {
+export default function BlogId() {
   return(
     <>
       <h1>ブログタイトル</h1>
