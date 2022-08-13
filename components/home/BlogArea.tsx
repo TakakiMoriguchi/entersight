@@ -3,15 +3,15 @@ import {
   Text,
   SimpleGrid
 } from "@chakra-ui/react"
-import Link from "next/link";
+import Link from "next/link"
 import SectionTitle from '../global/SectionTitle'
 
 function formatDate(dt:any) {
   let date = new Date(dt)
-  var y = date.getFullYear();
-  var m = ('00' + (date.getMonth()+1)).slice(-2);
-  var d = ('00' + date.getDate()).slice(-2);
-  return (y + '/' + m + '/' + d);
+  var y = date.getFullYear()
+  var m = ('00' + (date.getMonth()+1)).slice(-2)
+  var d = ('00' + date.getDate()).slice(-2)
+  return (y + '/' + m + '/' + d)
 }
 
 export default function BlogArea () {
@@ -87,6 +87,7 @@ export default function BlogArea () {
           align="center"
         />
       </Box>
+      
       <SimpleGrid columns={[2, 3, 4]} spacing={[5]}>
         { blogApi.data.map  ((val:any) => (
           <>
