@@ -56,8 +56,8 @@ const WorkApi = [
   },
 ]
 
-export default function OurServices() {
-  console.log(process.env.PUBLIC_API_KEY)
+export default function OurServices({ props }) {
+  console.log(props)
 
   return (
     <>
@@ -84,10 +84,10 @@ export default function OurServices() {
           p={5}
         >
           <Stack>
-            { WorkApi.map((val) => (
+            { props.map((val) => (
               <Box p={2} key={val.id}>
                 <Text fontWeight='bold'>{ val.title }</Text>
-                <Text>{ val.sub_title }</Text>
+                <Text>{ val.subtitle }</Text>
               </Box>
             ))}
           </Stack>
