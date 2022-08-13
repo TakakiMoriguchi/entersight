@@ -39,14 +39,24 @@ export default function Home({worksData}) {
 }
 
 export const getStaticProps = async () => {
-  const data = await client.get({
+  const worksData = await client.get({
     endpoint: "works",
+    queries: { limit: 4 }
+  })
+  const blogsData = await client.get({
+    endpoint: "blogs",
+    queries: { limit: 4 }
+  })
+  const gallariesData = await client.get({
+    endpoint: "gallaries",
     queries: { limit: 4 }
   })
 
   return {
     props: {
-      worksData: data.contents
+      worksData: worksData.contents,
+      blogsData: blogsData.contents,
+      gallariesData: gallariesData.contents
     },
   };
 };
