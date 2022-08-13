@@ -1,7 +1,7 @@
-import { 
-  Box, 
+import {
+  Box,
   Text,
-  SimpleGrid 
+  SimpleGrid
 } from "@chakra-ui/react"
 import Link from "next/link"
 import SectionTitle from '../global/SectionTitle'
@@ -14,8 +14,8 @@ function formatDate(dt:any) {
   return (y + '/' + m + '/' + d)
 }
 
-export default function BlogArea ({ blog }) {
-  
+export default function BlogArea () {
+
   const blogApi: any = {
       "data": [
         {
@@ -70,10 +70,10 @@ export default function BlogArea ({ blog }) {
             "availableLocales": []
           }
         },
-        
+
       ],
       "meta": {}
-    }  
+    }
 
 
   return (
@@ -87,73 +87,64 @@ export default function BlogArea ({ blog }) {
           align="center"
         />
       </Box>
-        <SimpleGrid columns={[2, 3, 4]} spacing={[5]}> 
-          { blogApi.data.map  ((val:any) => (
-            <>
-              <Link href={`/blog/${val.id}`}>
-                <a>
-                  <Box 
-                    w='100%' 
-                    h={['250px', '300px', '350px']}
-                    m='2'
-                    boxShadow='1px 1px 5px gray'
-                    borderRadius='5'
-                    _hover={{ 
-                      color: 'black'
-                      
-                  
-                    }}
-                    >
-                    <Box key={val.id}
-                      p='5'
-                      pl='4'
-                      bgImg={ val.attributes.thumbnail }
-                      color='white'
-                      h='45%'
-                      borderTopRadius='5'
-                    >
-                      <Box
-                        position='relative'
-                        top={['40px','60px','80px']}
-                      >
-                        <Text
-                          fontSize='.75rem'
-                        >{ formatDate(val.attributes.createdAt) }</Text>
-                        <Text
-                          fontWeight='bold'
-                        >{ val.attributes.title }</Text>
-                      </Box>
-                    </Box>
-                    <Box
-                      h='55%'
-                    >
-                      <Text
-                        bg='#1a365d'
-                        color='azure'
-                        borderBottomRightRadius='15'
-                        display='inline-block'
-                        p='1'
-                        pl='5'
-                        pr='5'
-                        mt='2'
-                        fontSize='.75rem'
-                      >
-                        <span>
-                        { val.attributes.category.name }
-                        </span>
-                      </Text>
-                      <Box 
-                        fontSize='.85rem'
-                        m='4'
-                        noOfLines={[3,4,5]} 
-                        _hover={{ color: 'black' }}
-                      >
-                        { val.attributes.description.replace(/(<([^>]+)>)/gi, '') }
-                      </Box>
-                    </Box>
-                  </Box>
-                </a>
-              </Link>
+      
+      <SimpleGrid columns={[2, 3, 4]} spacing={[5]}>
+        { blogApi.data.map  ((val:any) => (
+          <>
+              <Box
+              w='100%'
+              h={['250px', '300px', '350px']}
+              m='2'
+              boxShadow='1px 1px 5px gray'
+              borderRadius='5'
+              >
+              <Box key={val.id}
+                p='5'
+                pl='4'
+                bgImg={ val.attributes.thumbnail }
+                color='white'
+                h='45%'
+                borderTopRadius='5'
+              >
+                <Box
+                  position='relative'
+                  top={['40px','60px','80px']}
+                >
+                  <Text
+                    fontSize='.75rem'
+                  >{ formatDate(val.attributes.createdAt) }</Text>
+                  <Text
+                    fontWeight='bold'
+                  >{ val.attributes.title }</Text>
+                </Box>
+              </Box>
+              <Box
+                h='55%'
+              >
+                <Text
+                  bg='#1a365d'
+                  color='azure'
+                  borderBottomRightRadius='15'
+                  display='inline-block'
+                  p='1'
+                  pl='5'
+                  pr='5'
+                  mt='2'
+                  fontSize='.75rem'
+                >
+                  <span>
+                  { val.attributes.category.name }
+                  </span>
+                </Text>
+                <Box
+                  fontSize='.85rem'
+                  m='4'
+                  noOfLines={[3,4,5]}
+                >
+                  { val.attributes.description.replace(/(<([^>]+)>)/gi, '') }
+                </Box>
+              </Box>
+            </Box>
           </>
         ))}
       </SimpleGrid>

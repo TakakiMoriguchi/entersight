@@ -10,8 +10,8 @@ import {
 import Image from 'next/image'
 import NextLink from 'next/link'
 
-import { AnimationList } from '../../../data/animationList'
-import { AnimationChildren } from '../../../data/animationListChildren'
+import { AnimationList } from '../../data/animationList'
+import { AnimationChildren } from '../../data/animationListChildren'
 
 export default function Home() {
   return (
@@ -122,7 +122,7 @@ export function AnimationListGridBodyItem({ arg }) {
   return (
     <>
       <NextLink
-        href={'/presentation/animation/children/' + arg.path}
+        href={'/animation/children/' + arg.path}
       >
         <a>
           <GridItem
