@@ -1,0 +1,14 @@
+@import "../variables.scss";
+
+.partnerAreaLink a {
+  text-decoration: none;
+
+  &:hover{
+    color: $main-color;
+  }
+}
+
+.partnerArea {
+  table-layout: fixed;
+  width: 100%;
+}

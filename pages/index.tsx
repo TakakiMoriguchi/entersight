@@ -8,6 +8,7 @@ import BlogArea from '../components/home/BlogArea'
 
 import { Box, Container } from '@chakra-ui/react'
 import ServiceArea from '../components/home/ServiceArea'
+import PartnerArea from '../components/home/PartnerArea'
 
 export default function Home() {
   return (
@@ -26,11 +27,7 @@ export default function Home() {
 
           <BlogArea />
 
-          <ul>
-            <li>partner</li>
-          </ul>
-
-          <PartnersCompany />
+          <PartnerArea />
 
         </Container>
       </Box>

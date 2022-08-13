@@ -1,27 +1,30 @@
 import {
   Box,
   Stack,
+  StylesProvider,
   Text
 } from "@chakra-ui/react"
 import SectionTitle from '../global/SectionTitle'
+import style from '../../styles/components/partnerArea.module.scss'
 import Link from 'next/link'
 
-const Service = [
-  {
-    id:"1",
-    title: "tinyWEST",
-    sub_title: "スマホの修理を行います。",
-    link:"https://www.tinywest.net/"
-  },
-  {
-    id:"2",
-    title: "8beat",
-    sub_title: "バンドマン向けのデザインを作成します。",
-    link:"https://www.8beat.net/"
-  },
-]
-
 export default function ServiceArea() {
+
+  const Service = [
+    {
+      id:"1",
+      title: "tinyWEST",
+      sub_title: "スマホの修理を行います。",
+      link:"https://www.tinywest.net/"
+    },
+    {
+      id:"2",
+      title: "8beat",
+      sub_title: "バンドマン向けのデザインを作成します。",
+      link:"https://www.8beat.net/"
+    },
+  ]
+
   return (
     <>
       <Stack
@@ -50,10 +53,10 @@ export default function ServiceArea() {
             { Service.map((val) => (
               <Box p={2} key={val.id}>
                 <Link href={val.link}>
-                  <a>
+                  <a className={style.serviceArea} target="_blank">
                     <Text suppressHydrationWarning 
                       fontWeight='bold'
-                      _hover={{ color: 'lightblue' }}
+                      _hover={{ color: '#B02c33' }}
                     >
                       { val.title }
                     </Text>
