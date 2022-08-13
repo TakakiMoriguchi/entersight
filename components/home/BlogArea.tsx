@@ -3,16 +3,18 @@ import {
   Text,
   SimpleGrid 
 } from "@chakra-ui/react"
+import Link from "next/link";
 import SectionTitle from '../global/SectionTitle'
 
-export default function BlogArea () {
+function formatDate(dt:any) {
+  let date = new Date(dt)
+  var y = date.getFullYear();
+  var m = ('00' + (date.getMonth()+1)).slice(-2);
+  var d = ('00' + date.getDate()).slice(-2);
+  return (y + '/' + m + '/' + d);
+}
 
-  function formatDate(dt:any) {
-    var y = dt.getFullYear();
-    var m = ('00' + (dt.getMonth()+1)).slice(-2);
-    var d = ('00' + dt.getDate()).slice(-2);
-    return (y + '/' + m + '/' + d);
-  }
+export default function BlogArea () {
   
   const blogApi: any = {
       "data": [
@@ -88,7 +90,7 @@ export default function BlogArea () {
       <SimpleGrid columns={[2, 3, 4]} spacing={[5]}> 
         { blogApi.data.map  ((val:any) => (
           <>
-            <Box 
+              <Box 
               w='100%' 
               h={['250px', '300px', '350px']}
               m='2'
@@ -109,7 +111,7 @@ export default function BlogArea () {
                 >
                   <Text
                     fontSize='.75rem'
-                  >{ formatDate(new Date(val.attributes.createdAt)) }</Text>
+                  >{ formatDate(val.attributes.createdAt) }</Text>
                   <Text
                     fontWeight='bold'
                   >{ val.attributes.title }</Text>
@@ -119,7 +121,7 @@ export default function BlogArea () {
                 h='55%'
               >
                 <Text
-                  bg='cyan.500'
+                  bg='#1a365d'
                   color='azure'
                   borderBottomRightRadius='15'
                   display='inline-block'
@@ -130,7 +132,7 @@ export default function BlogArea () {
                   fontSize='.75rem'
                 >
                   <span>
-                   { val.attributes.category.name }
+                  { val.attributes.category.name }
                   </span>
                 </Text>
                 <Box 
