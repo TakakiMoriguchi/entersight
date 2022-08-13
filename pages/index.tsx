@@ -28,7 +28,7 @@ export default function Home({worksData}) {
 
           <ServiceArea />
 
-          {/* <BlogArea /> */}
+          <BlogArea />
 
           <PartnerArea />
 
