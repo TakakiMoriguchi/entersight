@@ -1,13 +1,12 @@
+import { Box, Container } from '@chakra-ui/react'
+
 import Layout from '../components/layout/Layout'
 import style from '../styles/home.module.scss'
 
-import OurServices from '../components/home/OurServices'
-import PartnersCompany from '../components/home/PartnersCompany'
+import WorkArea from '../components/home/WorkArea'
 import SkillArea from '../components/home/SkillArea'
-import BlogArea from '../components/home/BlogArea'
-
-import { Box, Container } from '@chakra-ui/react'
 import ServiceArea from '../components/home/ServiceArea'
+import BlogArea from '../components/home/BlogArea'
 import PartnerArea from '../components/home/PartnerArea'
 
 export default function Home() {
@@ -19,13 +18,13 @@ export default function Home() {
           maxW='container.lg'
         >
 
-          <OurServices />
+          <WorkArea />
 
           <SkillArea />
 
           <ServiceArea />
 
-          <BlogArea />
+          {/* <BlogArea /> */}
 
           <PartnerArea />
 

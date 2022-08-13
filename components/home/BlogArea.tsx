@@ -1,7 +1,7 @@
-import { 
-  Box, 
+import {
+  Box,
   Text,
-  SimpleGrid 
+  SimpleGrid
 } from "@chakra-ui/react"
 import Link from "next/link";
 import SectionTitle from '../global/SectionTitle'
@@ -15,7 +15,7 @@ function formatDate(dt:any) {
 }
 
 export default function BlogArea () {
-  
+
   const blogApi: any = {
       "data": [
         {
@@ -70,10 +70,10 @@ export default function BlogArea () {
             "availableLocales": []
           }
         },
-        
+
       ],
       "meta": {}
-    }  
+    }
 
 
   return (
@@ -87,11 +87,11 @@ export default function BlogArea () {
           align="center"
         />
       </Box>
-      <SimpleGrid columns={[2, 3, 4]} spacing={[5]}> 
+      <SimpleGrid columns={[2, 3, 4]} spacing={[5]}>
         { blogApi.data.map  ((val:any) => (
           <>
-              <Box 
-              w='100%' 
+              <Box
+              w='100%'
               h={['250px', '300px', '350px']}
               m='2'
               boxShadow='1px 1px 5px gray'
@@ -135,10 +135,10 @@ export default function BlogArea () {
                   { val.attributes.category.name }
                   </span>
                 </Text>
-                <Box 
+                <Box
                   fontSize='.85rem'
                   m='4'
-                  noOfLines={[3,4,5]} 
+                  noOfLines={[3,4,5]}
                 >
                   { val.attributes.description.replace(/(<([^>]+)>)/gi, '') }
                 </Box>

@@ -57,6 +57,8 @@ const WorkApi = [
 ]
 
 export default function OurServices() {
+  console.log(process.env.PUBLIC_API_KEY)
+
   return (
     <>
       <Stack
