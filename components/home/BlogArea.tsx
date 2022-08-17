@@ -1,12 +1,12 @@
 import {
   Box,
   Text,
-  SimpleGrid
+  SimpleGrid,
 } from "@chakra-ui/react"
 import Link from "next/link"
 import SectionTitle from '../global/SectionTitle'
 
-function formatDate(dt:any) {
+function formatDate(dt: Date) {
   let date = new Date(dt)
   var y = date.getFullYear()
   var m = ('00' + (date.getMonth()+1)).slice(-2)
@@ -14,67 +14,7 @@ function formatDate(dt:any) {
   return (y + '/' + m + '/' + d)
 }
 
-export default function BlogArea () {
-
-  const blogApi: any = {
-      "data": [
-        {
-          id: 1,
-          attributes: {
-            title: "my first blog",
-            description: "#### hello world!\nIm Takaki Moriguchi\nI borned Japan in 1989\nI can design and programming\nrecently I focus **DB** analysis",
-            createdAt: "2020-11-27T15:30:00.000Z",
-            category: {"id": "1", "name": "Technology"},
-            thumbnail: "https://picsum.photos/600/400"
-          },
-          meta: {
-            availableLocales: []
-          }
-        },
-        {
-          id: 2,
-          attributes: {
-            title: "my second blog",
-            description: "\t\t\t\t<ul>\n\t\t\t\t   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>\n\t\t\t\t   <li>Aliquam tincidunt mauris eu risus.</li>\n\t\t\t\t   <li>Vestibulum auctor dapibus neque.</li>\n\t\t\t\t</ul>.replace(/(<([^>]+)>)/gi, '')",
-            createdAt: "2020-12-09T15:30:00.000Z",
-            category: {"id": "3", "name": "analysis"},
-            thumbnail: "https://picsum.photos/600/400"
-          },
-          meta: {
-            "availableLocales": []
-          }
-        },
-        {
-          id: 3,
-          attributes: {
-            title: "my third blog ",
-            description: "#### hello world!\nIm Takaki Moriguchi\nI borned Japan in 1989\nI can design and programming\nrecently I focus **DB** analysis",
-            createdAt: "2020-12-13T15:30:00.000Z",
-            category: {"id": "2", "name": "design"},
-            thumbnail: "https://picsum.photos/600/400"
-          },
-          meta: {
-            availableLocales: []
-          }
-        },
-        {
-          id: 4,
-          attributes: {
-            title:  "my force blog",
-            description: "\t\t\t\t<ul>\n\t\t\t\t   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>\n\t\t\t\t   <li>Aliquam tincidunt mauris eu risus.</li>\n\t\t\t\t   <li>Vestibulum auctor dapibus neque.</li>\n\t\t\t\t</ul>",
-            createdAt: "2020-12-21T15:30:00.000Z",
-            category: {"id": "2", "name": "design"},
-            thumbnail: "https://picsum.photos/600/400"
-          },
-          meta: {
-            "availableLocales": []
-          }
-        },
-
-      ],
-      "meta": {}
-    }
-
+export default function BlogArea ({ props }) {
 
   return (
     <>
@@ -88,63 +28,78 @@ export default function BlogArea () {
         />
       </Box>
       
-      <SimpleGrid columns={[2, 3, 4]} spacing={[5]}>
-        { blogApi.data.map  ((val:any) => (
+      <SimpleGrid 
+        columns={[2, 2, 3, 4]} 
+        spacing={[5]}
+        alignItems='center'
+        justifyItems='center'  
+      >
+        { props.map  ((val:any) => (
           <>
-              <Box
-              w='100%'
-              h={['250px', '300px', '350px']}
-              m='2'
-              boxShadow='1px 1px 5px gray'
-              borderRadius='5'
-              >
-              <Box key={val.id}
-                p='5'
-                pl='4'
-                bgImg={ val.attributes.thumbnail }
-                color='white'
-                h='45%'
-                borderTopRadius='5'
+            <Link  key={val.id} href={`/blogs/${val.id}`}>
+              <a>
+                <Box
+                h={['250px', '300px', '350px']}
+                m='2'
+                boxShadow='1px 1px 5px gray'
+                borderRadius='5'
+                _hover={{ boxShadow: '3px 3px 10px gray' }}
               >
                 <Box
-                  position='relative'
-                  top={['40px','60px','80px']}
+                  p='5'
+                  pl='4'
+                  bgImg={ val.thumbnail.url }
+                  bgPosition='center'
+                  bgSize='cover'
+                  color='white'
+                  h='45%'
+                  borderTopRadius='5'
+                >
+                  <Box
+                    position='relative'
+                    top={['40px','60px','80px']}
+                  >
+                    <Text
+                      fontSize='.75rem'
+                      textShadow='.5px .5px .5px #080808'
+                    >{ formatDate(val.createdAt) }</Text>
+                    <Text
+                      fontWeight='bold'
+                      fontSize='.85rem'
+                      whiteSpace='nowrap'
+                      textShadow='.75px .75px .75px #080808'
+                    >{ val.title }</Text>
+                  </Box>
+                </Box>
+                <Box
+                  h='55%'
                 >
                   <Text
+                    bg='#1a365d'
+                    color='azure'
+                    borderBottomRightRadius='15'
+                    display='inline-block'
+                    p='1'
+                    pl='5'
+                    pr='5'
+                    mt='2'
                     fontSize='.75rem'
-                  >{ formatDate(val.attributes.createdAt) }</Text>
-                  <Text
-                    fontWeight='bold'
-                  >{ val.attributes.title }</Text>
+                  >
+                    <span>
+                    { val.category }
+                    </span>
+                  </Text>
+                  <Box
+                    fontSize='.85rem'
+                    m='4'
+                    noOfLines={[3,4,5]}
+                  >
+                    { val.content.replace(/(<([^>]+)>)/gi, '') }
+                  </Box>
                 </Box>
               </Box>
-              <Box
-                h='55%'
-              >
-                <Text
-                  bg='#1a365d'
-                  color='azure'
-                  borderBottomRightRadius='15'
-                  display='inline-block'
-                  p='1'
-                  pl='5'
-                  pr='5'
-                  mt='2'
-                  fontSize='.75rem'
-                >
-                  <span>
-                  { val.attributes.category.name }
-                  </span>
-                </Text>
-                <Box
-                  fontSize='.85rem'
-                  m='4'
-                  noOfLines={[3,4,5]}
-                >
-                  { val.attributes.description.replace(/(<([^>]+)>)/gi, '') }
-                </Box>
-              </Box>
-            </Box>
+              </a>
+            </Link>
           </>
         ))}
       </SimpleGrid>

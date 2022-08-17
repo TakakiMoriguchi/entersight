@@ -13,7 +13,7 @@ import ServiceArea from '../components/home/ServiceArea'
 import BlogArea from '../components/home/BlogArea'
 import PartnerArea from '../components/home/PartnerArea'
 
-export default function Home({worksData}) {
+export default function Home({worksData, blogsData}) {
   return (
     <Layout isHome>
       <Box className={style.contentsArea}>
@@ -28,7 +28,7 @@ export default function Home({worksData}) {
 
           <ServiceArea />
 
-          <BlogArea />
+          <BlogArea props={blogsData} />
 
           <PartnerArea />
 
