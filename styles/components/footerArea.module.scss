@@ -1,9 +1,16 @@
-.footerArea a  {
+@import '../variables.scss';
 
-  text-decoration: none;
+.footerArea{
+  background-color: $sub1-color;
+  padding-top: 1rem;
+  font-size: .9rem;
+  color: white;
 
-   &:hover{
-    color: yellow;
+  a{
+    text-decoration: none;
+
+    &:hover{
+      color: yellow;
+    }
   }
-
 }

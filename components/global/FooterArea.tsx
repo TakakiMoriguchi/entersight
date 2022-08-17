@@ -12,15 +12,15 @@ import {
   Square
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import Logo from '../../public/images/global/logo_yoko.svg'
+import style from '../../styles/components/footerArea.module.scss'
 
 const yyyy = new Date().getFullYear()
 
 export default function FooterArea() {
   return (
 
-    <Box bg='#1A365D' pt='1rem' fontSize='.9rem'>
-      <Container py={3} maxW='container.lg' color='white'>
+    <Box className={style.footerArea}>
+      <Container py={3} maxW='container.lg'>
 
         <Grid templateColumns='repeat(4, 1fr)' gap={8} column='12' mb='1rem'>
 
@@ -58,10 +58,10 @@ export default function FooterArea() {
           <GridItem w='100%' h='100%'>
             <Text fontWeight='bold' mb='.5rem'>PRODUCTS</Text>
             <List styleType='none'>
-              <ListItem _hover={{ color: 'yellow'  }}>
+              <ListItem>
                 <a href='https://tinywest.net'>tinyWEST</a>
               </ListItem>
-              <ListItem _hover={{ color: 'yellow'  }}>
+              <ListItem>
                 <a href='https://8beat.net'>8Beat</a>
               </ListItem>
             </List>
@@ -70,6 +70,7 @@ export default function FooterArea() {
           <GridItem w='100%' h='100%'>
             <Text fontWeight='bold' mb='.5rem'>DATA</Text>
             <List styleType='none'>
+              <ListItem>Gallary</ListItem>
               <ListItem><NextLink href='/animation'>MovingJavaScript</NextLink></ListItem>
             </List>
           </GridItem>
