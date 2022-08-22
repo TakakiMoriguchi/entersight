@@ -1,15 +1,13 @@
 import {
   Container,
   Box,
-  Grid,
+  SimpleGrid,
   GridItem,
   Center,
   Heading,
   List,
   ListItem,
-  Text,
-  HStack,
-  Square
+  Text
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import style from '../../styles/components/footerArea.module.scss'
@@ -22,8 +20,11 @@ export default function FooterArea() {
     <Box className={style.footerArea}>
       <Container py={3} maxW='container.lg'>
 
-        <Grid templateColumns='repeat(4, 1fr)' gap={8} column='12' mb='1rem'>
-
+        <SimpleGrid
+          columns={[1, 4]}
+          gap={8}
+          mb={8}
+        >
           <GridItem w='100%' h='100%'>
             {/* <Logo /> */}
             <Box mb='1rem'>
@@ -75,7 +76,7 @@ export default function FooterArea() {
             </List>
           </GridItem>
 
-        </Grid>
+        </SimpleGrid>
 
         <Center>
           @{ yyyy } entersight, All rights reserved.

@@ -3,7 +3,9 @@ import {
   Center,
   Box,
   Stack,
-  Text
+  Text,
+  SimpleGrid,
+  Image
 } from '@chakra-ui/react'
 import SectionTitle from '../global/SectionTitle'
 
@@ -63,8 +65,57 @@ export default function SkillArea() {
 
   return (
     <>
+      <SimpleGrid columns={[1, 2]} spacing={1}>
+        <Box
+          w='100%'
+          p={5}
+        >
+          <Box display='block' h='100%' py='10rem'>
+            <Center mb={["34.8px", "43.5px"]}>
+              <HStack>
+                <div className={style.first_hexagon_out}>
+                  <div className={style.first_hexagon_inner}>
+                    &nbsp;
+                  </div>
+                </div>
+                <Honeycomb num={lang[0]} />
+                <Honeycomb num={lang[1]} />
+              </HStack>
+            </Center>
+            <Center mb={["34.8px", "43.5px"]}>
+              <HStack>
+                <Honeycomb num={lang[2]} />
+                <Honeycomb num={lang[3]} />
+              </HStack>
+            </Center>
+            <Center>
+              <HStack>
+                <Honeycomb num={lang[4]} />
+                <Honeycomb num={lang[5]} />
+                <Honeycomb num={lang[6]} />
+              </HStack>
+            </Center>
+          </Box>
+        </Box>
 
-      <Stack
+        <Box
+          display='flex'
+          alignItems='center'
+        >
+          <Box
+            w='100%'
+            p={5}
+          >
+            <SectionTitle
+              arg="SKILLS"
+              sub="We appreciate these languages ​​and techniques"
+              align="right"
+            />
+          </Box>
+        </Box>
+      </SimpleGrid>
+
+      {/* <Stack
         direction={['column', 'row']}
         spacing='1rem'
         display='flex'
@@ -104,8 +155,6 @@ export default function SkillArea() {
 
         </Box>
 
-
-        {/* RIGHT CONTENT */}
         <Box
           w='100%'
           p={5}
@@ -117,7 +166,7 @@ export default function SkillArea() {
           />
         </Box>
 
-      </Stack>
+      </Stack> */}
     </>
   )
 }
@@ -129,8 +178,8 @@ function Honeycomb({ num }) {
         <div className={style.hexagon_inner}>
           <NextImage
             src={ '/images/skills/' + language[num] +'.svg' }
-            width='100px'
-            height='100px'
+            layout='fill'
+            className={style.hexagon_image}
           />
         </div>
       </div>

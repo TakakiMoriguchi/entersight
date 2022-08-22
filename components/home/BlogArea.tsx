@@ -27,16 +27,16 @@ export default function BlogArea ({ props }) {
           align="center"
         />
       </Box>
-      
-      <SimpleGrid 
-        columns={[2, 2, 3, 4]} 
+
+      <SimpleGrid
+        columns={[2, 2, 3, 4]}
         spacing={[5]}
         alignItems='center'
-        justifyItems='center'  
+        justifyItems='center'
       >
         { props.map  ((val:any) => (
-          <>
-            <Link  key={val.id} href={`/blogs/${val.id}`}>
+          <Box key={val.id}>
+            <Link href={`/blogs/${val.id}`}>
               <a>
                 <Box
                 h={['250px', '300px', '350px']}
@@ -100,7 +100,7 @@ export default function BlogArea ({ props }) {
               </Box>
               </a>
             </Link>
-          </>
+          </Box>
         ))}
       </SimpleGrid>
     </>
