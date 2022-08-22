@@ -10,9 +10,9 @@ function formatDate(dt: Date) {
 }
 
 export default function BlogId({ blogData }) {
-  
+
   console.log(getStaticProps)
-  
+
   return (
     <>
     <Box
