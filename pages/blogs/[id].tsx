@@ -1,5 +1,13 @@
-import { Heading, Text, Box } from "@chakra-ui/react";
+import { Heading, Text, Box, Container } from "@chakra-ui/react";
+import Link from "next/link";
+import { relative } from "path";
+import { rootCertificates } from "tls";
+import LargeContainer from "../../components/global/LargeContainer";
+import Layout from "../../components/layout/Layout";
 import { client } from "../../libs/client";
+import style from '../../styles/blogid.module.scss'
+import Image from 'next/image'
+
 
 function formatDate(dt: Date) {
   let date = new Date(dt)
@@ -14,26 +22,64 @@ export default function BlogId({ blogData }) {
   console.log(getStaticProps)
 
   return (
-    <>
-    <Box
-      p='5'
-    >
-      <Heading>{blogData.title}</Heading>
-      <Text
-        fontSize='.85rem'
-      >
-        { formatDate(blogData.publishedAt)}
-      </Text>
-      <Text
-        fontSize='.85rem'
-      >
-        {blogData.category}
-      </Text>
-      <Text
-        py='5'
-      >{blogData.content.replace(/(<([^>]+)>)/gi, '') }</Text>
-    </Box>
-    </>
+    <Layout isHome={undefined}>
+      
+      <LargeContainer>
+        <Box
+          display='flex'
+          justifyContent='center'
+        >
+          <Box
+            display='inline-block'
+            bg='white'
+            w='75%'
+            lineHeight='2rem'
+            mb='5'
+            mr='5'
+          >
+            <Heading>
+              {blogData.title}
+            </Heading>
+            <Text
+              py='5'
+              lineHeight='2rem'
+            >
+              {blogData.content.replace(/(<([^>]+)>)/gi, '') }
+            </Text>
+            <Text
+              fontSize='.85rem'
+              mb='-1.5'
+            >
+              category{blogData.category}
+            </Text>
+            <Text
+              fontSize='.85rem'
+              pb='5'
+            >
+              publishedAt&nbsp;{ formatDate(blogData.publishedAt)}
+            </Text>
+          </Box>
+          <Box
+            bgImage="url('https://picsum.photos/200/800')"
+            ml='3'
+            w='20%'
+            h='auto'  
+            position='relative'
+          >
+            <Link href='https://picsum.photos'>
+              <a>
+                <Text className={style.blogid}
+                  position='absolute'
+                  color='azure'
+                >
+                  https://picsum.photos
+                </Text>
+              </a>
+            </Link>
+          </Box>
+        </Box>
+      </LargeContainer>
+    </Layout>
   );
 }
 
