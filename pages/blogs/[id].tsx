@@ -1,12 +1,9 @@
 import { Heading, Text, Box, Container } from "@chakra-ui/react";
 import Link from "next/link";
-import { relative } from "path";
-import { rootCertificates } from "tls";
 import LargeContainer from "../../components/global/LargeContainer";
 import Layout from "../../components/layout/Layout";
 import { client } from "../../libs/client";
-import style from '../../styles/blogid.module.scss'
-import Image from 'next/image'
+import style from '../../styles/pages/blogDetail.module.scss'
 
 
 function formatDate(dt: Date) {
@@ -20,12 +17,10 @@ function formatDate(dt: Date) {
 const n = Math.floor(Math.random() * 10) + 1 
 const output =  "../images/blog/blog_bg" + [n] + ".jpg" 
 
-console.log(output)
-
 export default function BlogId({ blogData }) {
-
+  
   console.log(getStaticProps)
-
+  
   return (
     <Layout isHome={undefined}>
       
