@@ -17,6 +17,22 @@ function formatDate(dt: Date) {
   return (y + '/' + m + '/' + d)
 }
 
+const imglist = new Array(
+  "../images/blog/blog_bg1.jpg",
+  "../images/blog/blog_bg2.jpg",
+  "../images/blog/blog_bg3.jpg",
+  "../images/blog/blog_bg4.jpg",
+  "../images/blog/blog_bg5.jpg",
+  "../images/blog/blog_bg6.jpg",
+  "../images/blog/blog_bg7.jpg",
+  "../images/blog/blog_bg8.jpg",
+  "../images/blog/blog_bg9.jpg",
+  "../images/blog/blog_bg10.jpg",)
+const n = Math.floor(Math.random() * 9)
+const output =  "../images/blog/blog_bg" + [n] + ".jpg" 
+
+console.log(output)
+
 export default function BlogId({ blogData }) {
   
   console.log(getStaticProps)
@@ -60,19 +76,21 @@ export default function BlogId({ blogData }) {
             </Text>
           </Box>
           <Box
-            bgImage="url('https://picsum.photos/200/800')"
+            bgImage={ output }
+            bgPos='center'
+            bgSize='cover'
             ml='3'
             w='20%'
             h='auto'  
             position='relative'
           >
-            <Link href='https://picsum.photos'>
+            <Link href='https://www.feel-photo.info/'>
               <a>
                 <Text className={style.blogid}
                   position='absolute'
                   color='azure'
                 >
-                  https://picsum.photos
+                  photo by feel-photo
                 </Text>
               </a>
             </Link>
