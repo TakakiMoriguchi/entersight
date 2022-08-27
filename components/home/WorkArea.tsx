@@ -4,6 +4,7 @@ import {
   Text
 } from "@chakra-ui/react"
 import SectionTitle from '../global/SectionTitle'
+import Link from 'next/link'
 
 export default function OurServices({ props }) {
 
@@ -20,11 +21,15 @@ export default function OurServices({ props }) {
           w='100%'
           p={5}
         >
-          <SectionTitle
-            arg="WORKS"
-            sub="The best service we can provide"
-            align="left"
-          />
+          <Link href="/works">
+            <a>
+              <SectionTitle
+                arg="WORKS"
+                sub="The best service we can provide"
+                align="left"
+              />
+            </a>
+          </Link>
         </Box>
 
         <Box
@@ -33,10 +38,14 @@ export default function OurServices({ props }) {
         >
           <Stack>
             { props.map((val) => (
-              <Box p={2} key={val.id}>
-                <Text fontWeight='bold'>{ val.title }</Text>
-                <Text>{ val.subtitle }</Text>
-              </Box>
+              <Link href={'/works/'+val.id}>
+                <a>
+                  <Box p={2} key={val.id}>
+                    <Text fontWeight='bold'>{ val.title }</Text>
+                    <Text>{ val.subtitle }</Text>
+                  </Box>
+                </a>
+              </Link>
             ))}
           </Stack>
         </Box>
