@@ -17,6 +17,11 @@ function formatDate(dt: Date) {
   return (y + '/' + m + '/' + d)
 }
 
+const n = Math.floor(Math.random() * 10) + 1 
+const output =  "../images/blog/blog_bg" + [n] + ".jpg" 
+
+console.log(output)
+
 export default function BlogId({ blogData }) {
 
   console.log(getStaticProps)
@@ -60,19 +65,21 @@ export default function BlogId({ blogData }) {
             </Text>
           </Box>
           <Box
-            bgImage="url('https://picsum.photos/200/800')"
+            bgImage={ output }
+            bgPos='center'
+            bgSize='cover'
             ml='3'
             w='20%'
             h='auto'  
             position='relative'
           >
-            <Link href='https://picsum.photos'>
+            <Link href='https://www.feel-photo.info/'>
               <a>
                 <Text className={style.blogid}
                   position='absolute'
                   color='azure'
                 >
-                  https://picsum.photos
+                  photo by feel-photo
                 </Text>
               </a>
             </Link>
