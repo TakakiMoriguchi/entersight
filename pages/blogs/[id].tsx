@@ -17,18 +17,7 @@ function formatDate(dt: Date) {
   return (y + '/' + m + '/' + d)
 }
 
-const imglist = new Array(
-  "../images/blog/blog_bg1.jpg",
-  "../images/blog/blog_bg2.jpg",
-  "../images/blog/blog_bg3.jpg",
-  "../images/blog/blog_bg4.jpg",
-  "../images/blog/blog_bg5.jpg",
-  "../images/blog/blog_bg6.jpg",
-  "../images/blog/blog_bg7.jpg",
-  "../images/blog/blog_bg8.jpg",
-  "../images/blog/blog_bg9.jpg",
-  "../images/blog/blog_bg10.jpg",)
-const n = Math.floor(Math.random() * 9)
+const n = Math.floor(Math.random() * 10) + 1 
 const output =  "../images/blog/blog_bg" + [n] + ".jpg" 
 
 console.log(output)
