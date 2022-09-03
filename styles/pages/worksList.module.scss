@@ -1,6 +1,22 @@
 @media screen and (min-width: 769px) {
   .pc{
     display: block;
+    padding: 2rem 0;
+
+    table{
+      tbody{
+        tr{
+          td{
+            padding: 2rem 1.5rem;
+          }
+        }
+        tr:last-child{
+          td{
+            border-bottom: none;
+          }
+        }
+      }
+    }
   }
 
   .sp{
@@ -15,5 +31,6 @@
 
   .sp{
     display: block;
+    padding: 2rem 0;
   }
 }

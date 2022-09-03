@@ -9,6 +9,9 @@ import {
   Th,
   Td,
   Button,
+  Text,
+  Center,
+  SimpleGrid,
 } from '@chakra-ui/react'
 import style from '../../styles/pages/worksList.module.scss'
 import Link from 'next/link'
@@ -34,6 +37,13 @@ const Home: NextPage = ({ worksData }: any) => {
   return (
     <Layout isHome={undefined}>
       <LargeContainer>
+
+        {/* SearchBox & Graph */}
+        <SimpleGrid columns={[1, 2]}>
+          <Box bg='tomato' height='80px'></Box>
+          <Box bg='#E6FFFA' height='80px'></Box>
+        </SimpleGrid>
+
         {/* PC and iPad only */}
         <Box className={style.pc}>
           <WorksListForPc props={ worksData } />
@@ -43,6 +53,10 @@ const Home: NextPage = ({ worksData }: any) => {
         <Box className={style.sp}>
           <WorksListForSp props={ worksData } />
         </Box>
+
+        {/* pagination */}
+        <Center my="2rem">&lt;&nbsp;Pagination&nbsp;&gt;</Center>
+
       </LargeContainer>
     </Layout>
   )
@@ -64,10 +78,15 @@ export function WorksListForPc ({ props }) {
           { props.map((val) => (
             <>
               <Tr>
-                <Td>{ val.title }</Td>
-                <Td>{ val.price }</Td>
+                <Td>
+                  <Text>{ val.title }</Text>
+                  <Text fontSize='xs'>{ val.subtitle }</Text>
+                </Td>
+                <Td>￥&nbsp;{ val.price }</Td>
                 <Td>{ val.deadline }{ val.deadline_unit }</Td>
-                <Td>detail</Td>
+                <Td>
+                  <Button variant='outline'>詳細</Button>
+                </Td>
               </Tr>
             </>
           ))}
