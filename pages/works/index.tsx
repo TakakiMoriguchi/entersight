@@ -17,6 +17,7 @@ import style from '../../styles/pages/worksList.module.scss'
 import Link from 'next/link'
 import Layout from '../../components/layout/Layout'
 import LargeContainer from '../../components/global/LargeContainer'
+import SearchBox from '../../components/works/SearchBox'
 
 export const getStaticProps = async () => {
   const worksData = await client.get({
@@ -32,15 +33,13 @@ export const getStaticProps = async () => {
 }
 
 const Home: NextPage = ({ worksData }: any) => {
-  console.log(worksData)
-
   return (
     <Layout isHome={undefined}>
       <LargeContainer>
 
         {/* SearchBox & Graph */}
-        <SimpleGrid columns={[1, 2]}>
-          <Box bg='tomato' height='80px'></Box>
+        <SimpleGrid columns={[1, 2]} spacing={3}>
+          <SearchBox />
           <Box bg='#E6FFFA' height='80px'></Box>
         </SimpleGrid>
 
@@ -75,20 +74,18 @@ export function WorksListForPc ({ props }) {
           </Tr>
         </Thead>
         <Tbody>
-          { props.map((val) => (
-            <>
-              <Tr>
-                <Td>
-                  <Text>{ val.title }</Text>
-                  <Text fontSize='xs'>{ val.subtitle }</Text>
-                </Td>
-                <Td>￥&nbsp;{ val.price }</Td>
-                <Td>{ val.deadline }{ val.deadline_unit }</Td>
-                <Td>
-                  <Button variant='outline'>詳細</Button>
-                </Td>
-              </Tr>
-            </>
+          { props.map((val, i) => (
+            <Tr key={i}>
+              <Td>
+                <Text>{ val.title }</Text>
+                <Text fontSize='xs'>{ val.subtitle }</Text>
+              </Td>
+              <Td>￥&nbsp;{ val.price }</Td>
+              <Td>{ val.deadline }{ val.deadline_unit }</Td>
+              <Td>
+                <Button variant='outline'>詳細</Button>
+              </Td>
+            </Tr>
           ))}
         </Tbody>
       </Table>
