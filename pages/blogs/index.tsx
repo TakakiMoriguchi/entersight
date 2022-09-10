@@ -131,7 +131,7 @@ export default function Blogs({ blogData }) {
 
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async (context: any) => {
-  const data = await client.get({ endpoint: "blogs" });
+  const data = await client.get({ endpoint: "blogs", queries: { limit: 100 } });
   return {
     props: {
       blogData: data,
