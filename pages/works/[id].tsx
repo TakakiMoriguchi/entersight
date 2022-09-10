@@ -5,8 +5,7 @@ import {
   SimpleGrid
 } from '@chakra-ui/react'
 import { client } from '../../libs/client'
-import type { GetStaticProps, NextPage } from 'next';
-import Router, { useRouter } from 'next/router';
+import type { NextPage } from 'next';
 import Layout from '../../components/layout/Layout'
 import LargeContainer from '../../components/global/LargeContainer'
 import style from '../../styles/pages/workDetail.module.scss'
@@ -29,8 +28,6 @@ export const getStaticProps = async (context) => {
 }
 
 const Id: NextPage = ({ workData }: any) => {
-  console.log(workData)
-
   return (
     <Layout isHome={undefined}>
       <LargeContainer>

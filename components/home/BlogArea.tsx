@@ -21,11 +21,15 @@ export default function BlogArea ({ props }) {
       <Box
         py='1rem'
       >
-        <SectionTitle
-          arg="BROG"
-          sub="We are always on the cutting edge of technology."
-          align="center"
-        />
+        <Link href="/blogs">
+          <a>
+            <SectionTitle
+              arg="BROG"
+              sub="We are always on the cutting edge of technology."
+              align="center"
+            />
+          </a>
+        </Link>
       </Box>
 
       <SimpleGrid
