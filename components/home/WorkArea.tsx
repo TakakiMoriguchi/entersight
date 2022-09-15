@@ -15,7 +15,7 @@ export default function OurServices({ props }) {
         spacing='1rem'
         display='flex'
         alignItems='center'
-        height='80vh'
+        height='70vh'
       >
         <Box
           w='100%'
