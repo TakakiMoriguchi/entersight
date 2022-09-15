@@ -66,9 +66,29 @@ export default function SkillArea() {
   return (
     <>
       <SimpleGrid columns={[1, 2]} spacing={1}>
+
+        {/* section title for sp */}
+        <Box
+          display={['flex', 'none']}
+          alignItems='center'
+        >
+          <Box
+            w='100%'
+            p={5}
+          >
+            <SectionTitle
+              arg="SKILLS"
+              sub="We appreciate these languages ​​and techniques"
+              align="right"
+            />
+          </Box>
+        </Box>
+
+
         <Box
           w='100%'
           p={5}
+          height='70vh'
         >
           <Box display='block' h='100%' py='10rem'>
             <Center mb={["34.8px", "43.5px"]}>
@@ -98,8 +118,9 @@ export default function SkillArea() {
           </Box>
         </Box>
 
+        {/* section title for pc */}
         <Box
-          display='flex'
+          display={['none', 'flex']}
           alignItems='center'
         >
           <Box

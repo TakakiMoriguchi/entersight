@@ -14,5 +14,9 @@
     /*背景画像設定*/
     background:url("../../public/images/home/hero.png") no-repeat center;
     background-size:cover;
+
+    @media screen and (max-width:480px){
+      background:url("../../public/images/home/hero_sp.png") no-repeat center;
+    }
   }
 }
