@@ -21,7 +21,7 @@ import Image from "next/image";
 import React from "react";
 import Pagination from "../../components/global/Pagenation";
 
-export default function Blogs({ blogData }) {
+export default function Blogs({ blogData, totalCountData }) {
   const PER_PAGE = 5;
   const categories = [
     "All",
@@ -32,12 +32,12 @@ export default function Blogs({ blogData }) {
     "Others",
   ];
 
-  const [totalCount, setTotalCount] = React.useState(blogData.totalCount);
+  const [totalCount, setTotalCount] = React.useState(totalCountData);
 
-  const [dummyBlogData, setDummy] = React.useState(blogData.contents);
+  const [dummyBlogData, setDummy] = React.useState(blogData);
 
   const [currentPageBlogData, setCurrentPage] = React.useState(
-    blogData.contents.slice(0, PER_PAGE)
+    blogData.slice(0, PER_PAGE)
   );
 
   React.useEffect(() => {
@@ -55,10 +55,10 @@ export default function Blogs({ blogData }) {
   const changeCurrentCategory = (e) => {
     const category = e.target.value;
     if (category === "All") {
-      setDummy(blogData.contents);
+      setDummy(blogData);
       setTotalCount(blogData.totalCount);
     } else {
-      const currentCategory = blogData.contents.filter((item) => {
+      const currentCategory = blogData.filter((item) => {
         return item.category[0] === category;
       });
       setDummy(currentCategory);
@@ -129,12 +129,36 @@ export default function Blogs({ blogData }) {
   );
 }
 
+export const getMicroCMSData = async (limit = 10, offset = 0) => {
+  let data = await client.get({
+    endpoint: "blogs",
+    queries: {
+      offset,
+      limit,
+    },
+  });
+  return data;
+};
+
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async (context: any) => {
-  const data = await client.get({ endpoint: "blogs", queries: { limit: 100 } });
+  const data = await getMicroCMSData();
+  let contents = [];
+  if (data.limit < data.totalCount) {
+    for (let i = 0; i < Math.ceil(data.totalCount / data.limit); i++) {
+      const c = await getMicroCMSData(data.limit, data.limit * i);
+      c.contents.map((value) => {
+        contents.push(value);
+      });
+    }
+  } else {
+    contents = data.contents;
+  }
+
   return {
     props: {
-      blogData: data,
+      blogData: contents,
+      totalCountData: data.totalCount,
     },
   };
 };

@@ -7,6 +7,7 @@ import Layout from "../../components/layout/Layout";
 import { client } from "../../libs/client";
 import style from '../../styles/blogid.module.scss'
 import Image from 'next/image'
+import { getMicroCMSData } from './index'
 
 
 function formatDate(dt: Date) {
@@ -92,9 +93,20 @@ export default function BlogId({ blogData }) {
 
 // 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
-  const data = await client.get({ endpoint: "blogs", queries: { limit: 100 } });
+  const data = await getMicroCMSData();
+  let contents = [];
+  if (data.limit < data.totalCount) {
+    for (let i = 0; i < Math.ceil(data.totalCount / data.limit); i++) {
+      const c = await getMicroCMSData(data.limit, data.limit * i);
+      c.contents.map((value) => {
+        contents.push(value);
+      });
+    }
+  } else {
+    contents = data.contents;
+  }
 
-  const paths = data.contents.map((content:any) => `/blogs/${content.id}`);
+  const paths = contents.map((content:any) => `/blogs/${content.id}`);
   return { paths, fallback: false };
 };
 
