@@ -85,6 +85,22 @@ export function GalleryItemStyle() {
           -webkit-line-clamp: 2;
         }
 
+        .modal-content {
+          max-height: 85vh;
+          padding: 1.2em;
+          overflow-y: scroll;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          @media screen and (min-width: 48em) {
+            padding: 2em;
+            max-height: 95vh;
+          }
+        }
+
         .modal-imgWrap {
           aspect-ratio: 3 / 2;
 
@@ -114,6 +130,10 @@ export function GalleryItemStyle() {
 
           &::after {
             display: none;
+          }
+
+          &.swiper-button-disabled {
+            opacity: 0;
           }
         }
 

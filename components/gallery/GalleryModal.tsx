@@ -1,9 +1,7 @@
 import { Box, Tag, Text } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
-
-SwiperCore.use([Navigation]);
+import { Navigation } from "swiper";
 
 export default function GalleryModal({ show, setShow, props }) {
   const closeModal = () => {
@@ -43,7 +41,6 @@ export default function GalleryModal({ show, setShow, props }) {
           position="relative"
           maxW="600px"
           w="90%"
-          p={{ base: "1.2em", md: "2em" }}
           borderRadius="12px"
           bg="#fbfbfb"
           zIndex="2"
@@ -56,52 +53,50 @@ export default function GalleryModal({ show, setShow, props }) {
             right="8px"
             color="#fdfdfd"
           />
-          {/* 画像スライダー */}
-          <Box className="modal-imgWrap">
-            <Box className="swiper-wrap" px={{ base: "0", md: "2em" }}>
-              <Swiper
-                slidesPerView={1}
-                modules={[Navigation]}
-                navigation={{
-                  prevEl: "#slide-prev",
-                  nextEl: "#slide-next",
-                }}
-              >
-                {getImageUrls().map((url: string, index: number) => (
-                  <SwiperSlide key={`${index}`}>
-                    <img src={url} alt={props.title} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div id="slide-prev" className="swiper-button-prev"></div>
-              <div id="slide-next" className="swiper-button-next"></div>
+          <div className="modal-content">
+            {/* 画像スライダー */}
+            <Box className="modal-imgWrap">
+              <Box className="swiper-wrap" px={{ base: "0", md: "2em" }}>
+                <Swiper
+                  modules={[Navigation]}
+                  navigation={{
+                    prevEl: "#slide-prev",
+                    nextEl: "#slide-next",
+                  }}
+                >
+                  {getImageUrls().map((url: string, index: number) => (
+                    <SwiperSlide key={`${index}`}>
+                      <img src={url} alt={props.title} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                <div id="slide-prev" className="swiper-button-prev"></div>
+                <div id="slide-next" className="swiper-button-next"></div>
+              </Box>
             </Box>
-          </Box>
-
-          <Tag
-            my={3}
-            px={3}
-            py={1}
-            borderRadius={0}
-            fontSize={14}
-            color="#fff"
-            bg="blue.800"
-          >
-            {props.category}
-          </Tag>
-
-          <Text
-            fontSize={{ base: "16px", md: "20px" }}
-            fontWeight="bold"
-            mb={2}
-            color="#333"
-          >
-            {props.title}
-          </Text>
-
-          <Text fontSize={14} color="#333">
-            {props.comment}
-          </Text>
+            <Tag
+              my={3}
+              px={3}
+              py={1}
+              borderRadius={0}
+              fontSize={14}
+              color="#fff"
+              bg="blue.800"
+            >
+              {props.category}
+            </Tag>
+            <Text
+              fontSize={{ base: "16px", md: "20px" }}
+              fontWeight="bold"
+              mb={2}
+              color="#333"
+            >
+              {props.title}
+            </Text>
+            <Text fontSize={14} color="#333" whiteSpace="pre-wrap">
+              {props.comment}
+            </Text>
+          </div>
         </Box>
       </Box>
     );
