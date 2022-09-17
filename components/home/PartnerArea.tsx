@@ -42,7 +42,7 @@ export default function PartnerArea() {
 
   return(
     <Box
-      py='5rem'
+      height='70vh'
       fontSize='.85rem'
       lineHeight='1rem'
     >

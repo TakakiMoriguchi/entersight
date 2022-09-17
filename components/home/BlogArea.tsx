@@ -17,15 +17,19 @@ function formatDate(dt: Date) {
 export default function BlogArea ({ props }) {
 
   return (
-    <>
+    <Box height={['100vh', '70vh']}>
       <Box
-        py='1rem'
+        py='2rem'
       >
-        <SectionTitle
-          arg="BROG"
-          sub="We are always on the cutting edge of technology."
-          align="center"
-        />
+        <Link href="/blogs">
+          <a>
+            <SectionTitle
+              arg="BLOG"
+              sub="We are always on the cutting edge of technology."
+              align="center"
+            />
+          </a>
+        </Link>
       </Box>
 
       <SimpleGrid
@@ -103,6 +107,6 @@ export default function BlogArea ({ props }) {
           </Box>
         ))}
       </SimpleGrid>
-    </>
+    </Box>
   )
 }

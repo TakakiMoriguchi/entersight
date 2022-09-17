@@ -32,7 +32,7 @@ export default function ServiceArea() {
         spacing='1rem'
         display='flex'
         alignItems='center'
-        height='80vh'
+        height='70vh'
       >
         <Box
           w='100%'
@@ -54,7 +54,7 @@ export default function ServiceArea() {
               <Box p={2} key={val.id}>
                 <Link href={val.link}>
                   <a className={style.serviceArea} target="_blank">
-                    <Text suppressHydrationWarning 
+                    <Text suppressHydrationWarning
                       fontWeight='bold'
                       _hover={{ color: '#B02c33' }}
                     >

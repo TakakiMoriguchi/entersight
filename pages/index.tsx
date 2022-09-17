@@ -12,15 +12,13 @@ import SkillArea from '../components/home/SkillArea'
 import ServiceArea from '../components/home/ServiceArea'
 import BlogArea from '../components/home/BlogArea'
 import PartnerArea from '../components/home/PartnerArea'
+import LargeContainer from '../components/global/LargeContainer'
 
 export default function Home({worksData, blogsData}) {
   return (
     <Layout isHome>
       <Box className={style.contentsArea}>
-        <Container
-          py={2}
-          maxW='container.lg'
-        >
+        <LargeContainer>
 
           <WorkArea props={worksData} />
 
@@ -32,7 +30,7 @@ export default function Home({worksData, blogsData}) {
 
           <PartnerArea />
 
-        </Container>
+        </LargeContainer>
       </Box>
     </Layout>
   )

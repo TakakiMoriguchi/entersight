@@ -1,7 +1,6 @@
 import {
   Container,
   Heading,
-  styled,
   Box
 } from '@chakra-ui/react'
 import style from '../../styles/components/heroArea.module.scss'
