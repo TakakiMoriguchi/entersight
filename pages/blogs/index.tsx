@@ -24,7 +24,7 @@ export default function Blogs({ blogData, totalCountData }) {
     "Technology",
     "Design",
     "Programming",
-    "Others",
+    "Others"
   ]
 
   const [totalCount, setTotalCount] = React.useState(totalCountData)
