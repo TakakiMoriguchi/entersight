@@ -50,8 +50,10 @@ export default function Blogs({ blogData, totalCountData }) {
   const changeCurrentCategory = (e) => {
     const category = e.target.value
     if (category === "All") {
-      setDummy(blogData)
-      setTotalCount(blogData.totalCount);
+
+      setDummy(blogData);
+      setTotalCount(totalCountData);
+
     } else {
       const currentCategory = blogData.filter((item) => {
         return item.category[0] === category;
