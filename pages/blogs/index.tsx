@@ -1,63 +1,59 @@
 
 import {
-  Heading,
   Text,
   Box,
-  Container,
   Tabs,
   TabList,
   Tab,
   List,
   ListItem,
   Flex,
-} from "@chakra-ui/react";
-import Link from "next/link";
-import { relative } from "path";
-import { rootCertificates } from "tls";
-import LargeContainer from "../../components/global/LargeContainer";
-import Layout from "../../components/layout/Layout";
-import { client } from "../../libs/client";
-import style from "../../styles/blogid.module.scss";
-import Image from "next/image";
-import React from "react";
-import Pagination from "../../components/global/Pagenation";
+} from "@chakra-ui/react"
+import Link from "next/link"
+import LargeContainer from "../../components/global/LargeContainer"
+import Layout from "../../components/layout/Layout"
+import { client } from "../../libs/client"
+import React from "react"
+import Pagination from "../../components/global/Pagenation"
 
 export default function Blogs({ blogData, totalCountData }) {
-  const PER_PAGE = 5;
+  const PER_PAGE = 5
   const categories = [
     "All",
     "About",
     "Technology",
     "Design",
     "Programming",
-    "Others",
-  ];
+    "Others"
+  ]
 
-  const [totalCount, setTotalCount] = React.useState(totalCountData);
+  const [totalCount, setTotalCount] = React.useState(totalCountData)
 
-  const [dummyBlogData, setDummy] = React.useState(blogData);
+  const [dummyBlogData, setDummy] = React.useState(blogData)
 
   const [currentPageBlogData, setCurrentPage] = React.useState(
     blogData.slice(0, PER_PAGE)
-  );
+  )
 
   React.useEffect(() => {
-    const currentPage = dummyBlogData.slice(0, 0 + PER_PAGE);
-    setCurrentPage(currentPage);
-  }, [dummyBlogData]);
+    const currentPage = dummyBlogData.slice(0, 0 + PER_PAGE)
+    setCurrentPage(currentPage)
+  }, [dummyBlogData])
 
   const changeCurrentPage = (e) => {
-    const page = e.target.textContent;
-    const first = PER_PAGE * (page - 1);
-    const currentPage = dummyBlogData.slice(first, first + PER_PAGE);
-    setCurrentPage(currentPage);
-  };
+    const page = e.target.textContent
+    const first = PER_PAGE * (page - 1)
+    const currentPage = dummyBlogData.slice(first, first + PER_PAGE)
+    setCurrentPage(currentPage)
+  }
 
   const changeCurrentCategory = (e) => {
-    const category = e.target.value;
+    const category = e.target.value
     if (category === "All") {
+
       setDummy(blogData);
       setTotalCount(totalCountData);
+
     } else {
       const currentCategory = blogData.filter((item) => {
         return item.category[0] === category;
@@ -84,7 +80,7 @@ export default function Blogs({ blogData, totalCountData }) {
     const dummyDate = new Date(value).toLocaleDateString();
     const date = String(dummyDate).split("/").join("-");
     const dateArr = String(date).split("-");
-    const mdy = dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
+    const mdy = dateArr[2] + "/" + dateArr[0] + "/" + dateArr[1];
     const week = weekData[new Date(mdy).getDay()];
     return date + "(" + week + ")";
   };
