@@ -1,14 +1,10 @@
 import { Heading, Text, Box, Container } from "@chakra-ui/react";
 import Link from "next/link";
-import { relative } from "path";
-import { rootCertificates } from "tls";
 import LargeContainer from "../../components/global/LargeContainer";
 import Layout from "../../components/layout/Layout";
 import { client } from "../../libs/client";
-import style from '../../styles/blogid.module.scss'
-import Image from 'next/image'
+import style from '../../styles/pages/blogDetail.module.scss'
 import { getMicroCMSData } from './index'
-
 
 function formatDate(dt: Date) {
   let date = new Date(dt)
@@ -18,10 +14,8 @@ function formatDate(dt: Date) {
   return (y + '/' + m + '/' + d)
 }
 
-const n = Math.floor(Math.random() * 10) + 1 
-const output =  "../images/blog/blog_bg" + [n] + ".jpg" 
-
-console.log(output)
+const n = Math.floor(Math.random() * 10) + 1
+const output =  "../images/blog/blog_bg" + [n] + ".jpg"
 
 export default function BlogId({ blogData }) {
 
@@ -29,7 +23,7 @@ export default function BlogId({ blogData }) {
 
   return (
     <Layout isHome={undefined}>
-      
+
       <LargeContainer>
         <Box
           display='flex'
@@ -71,12 +65,13 @@ export default function BlogId({ blogData }) {
             bgSize='cover'
             ml='3'
             w='20%'
-            h='auto'  
+            h='auto'
             position='relative'
           >
             <Link href='https://www.feel-photo.info/'>
               <a>
-                <Text className={style.blogid}
+                <Text
+                  className={style.blogId}
                   position='absolute'
                   color='azure'
                 >
