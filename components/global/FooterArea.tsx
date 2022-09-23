@@ -71,7 +71,7 @@ export default function FooterArea() {
           <GridItem w='100%' h='100%'>
             <Text fontWeight='bold' mb='.5rem'>DATA</Text>
             <List styleType='none'>
-              <ListItem>Gallary</ListItem>
+              <ListItem><NextLink href='/galleries'>Gallery</NextLink></ListItem>
               <ListItem><NextLink href='/animation'>MovingJavaScript</NextLink></ListItem>
             </List>
           </GridItem>
