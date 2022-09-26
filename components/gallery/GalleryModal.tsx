@@ -3,6 +3,9 @@ import { CloseIcon } from "@chakra-ui/icons"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper"
 
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 import style from "../../styles/pages/GalleryModal.module.scss"
 
 export default function GalleryModal({ show, setShow, props }) {

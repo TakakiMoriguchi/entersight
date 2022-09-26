@@ -14,11 +14,11 @@ export default function Pagination({ totalCount, PER_PAGE, props }) {
   }
 
   return (
-    <Box py="12">
+    <Box py='12'>
       <Breadcrumb textAlign={"center"}>
         {range(1, Math.ceil(totalCount / PER_PAGE)).map((number) => (
           <BreadcrumbItem key={number}>
-            <Text mx="2" fontSize="md" onClick={clickFunction} cursor="pointer">
+            <Text mx='2' fontSize='md' onClick={clickFunction} cursor='pointer'>
               {number}
             </Text>
           </BreadcrumbItem>
