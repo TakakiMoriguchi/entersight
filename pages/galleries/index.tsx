@@ -1,6 +1,6 @@
 import { client } from "../../libs/client"
 
-import { Key, useState } from "react"
+import { useState } from "react"
 import type { NextPage } from "next"
 import {
   SimpleGrid,
