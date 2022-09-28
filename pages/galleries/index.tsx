@@ -72,10 +72,12 @@ const Home: NextPage = ({ galleryData, totalCount }: any) => {
 
   // 初期コンテンツ取得
   const [onePageData, setOnePageData] = useState(getOnePageData(1))
+  const [currentPage, setCurrentPage] = useState(1)
 
   // ページネーションクリック時表示データの更新→レンダリング
   const handlePagination = (num: number) => {
     setOnePageData(getOnePageData(num))
+    setCurrentPage(num)
   }
   // ------------コンテンツ取得・表示機能---------------
 
@@ -104,7 +106,8 @@ const Home: NextPage = ({ galleryData, totalCount }: any) => {
               <Pagination
                 totalCount={totalCount}
                 PER_PAGE={PER_PAGE}
-                props={handlePagination}
+                getNextPage={handlePagination}
+                currentPage={currentPage}
               />
             ) : null}
           </>
@@ -165,7 +168,7 @@ export function GalleryContent({ props }) {
   )
 }
 
-export function Pagination({ totalCount, PER_PAGE, props }) {
+export function Pagination({ totalCount, PER_PAGE, getNextPage, currentPage }) {
   const range = (start: number, end: number) => {
     return [...Array(end - start + 1)].map((_, i) => start + i)
   }
@@ -178,8 +181,10 @@ export function Pagination({ totalCount, PER_PAGE, props }) {
             <Text
               mx='2'
               fontSize='md'
-              onClick={() => props(number)}
+              onClick={() => getNextPage(number)}
               cursor='pointer'
+              fontWeight={currentPage == number ? "bold" : ""}
+              borderBottom={currentPage == number ? "2px solid" : ""}
             >
               {number}
             </Text>
