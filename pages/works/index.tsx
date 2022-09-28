@@ -1,4 +1,5 @@
 import type { NextPage } from "next"
+import NextLink from "next/link"
 import { useEffect, useState } from "react"
 import { client } from "../../libs/client"
 import {
@@ -12,19 +13,19 @@ import {
   Td,
   Button,
   Text,
-  Center,
   SimpleGrid,
   Breadcrumb,
   BreadcrumbItem,
 } from "@chakra-ui/react"
 import { ChevronRightIcon } from "@chakra-ui/icons"
-import style from "../../styles/pages/worksList.module.scss"
-import NextLink from "next/link"
+
 import Layout from "../../components/layout/Layout"
 import LargeContainer from "../../components/global/LargeContainer"
 import SearchBox from "../../components/works/SearchBox"
+import WorksChart from "../../components/works/WorksChart"
 
-const PER_PAGE = 2
+// 1ページに表示する投稿数
+const PER_PAGE = 4
 
 export const getStaticProps = async () => {
   const worksData = await client.get({
@@ -145,7 +146,7 @@ const Home: NextPage = ({ worksData }: any) => {
             PER_PAGE={PER_PAGE}
           />
 
-          <Box bg='#E6FFFA' height='80px'></Box>
+          <WorksChart props={worksData} />
         </SimpleGrid>
 
         <Box>
