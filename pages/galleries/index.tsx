@@ -10,8 +10,6 @@ import {
   Button,
   InputGroup,
   Input,
-  Breadcrumb,
-  BreadcrumbItem,
 } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
@@ -19,6 +17,7 @@ import Layout from "../../components/layout/Layout"
 import LargeContainer from "../../components/global/LargeContainer"
 import GalleryGridItem from "../../components/gallery/GalleryGridItem"
 import GalleryModal from "../../components/gallery/GalleryModal"
+import Pagenation from "../../components/global/Pagenation"
 
 const PER_PAGE = 12
 
@@ -103,10 +102,10 @@ const Home: NextPage = ({ galleryData, totalCount }: any) => {
             </article>
 
             {totalCount > PER_PAGE ? (
-              <Pagination
+              <Pagenation
                 totalCount={totalCount}
                 PER_PAGE={PER_PAGE}
-                getNextPage={handlePagination}
+                props={handlePagination}
                 currentPage={currentPage}
               />
             ) : null}
@@ -165,33 +164,6 @@ export function GalleryContent({ props }) {
       <GalleryGridItem onClick={openModal} props={props} />
       <GalleryModal show={show} setShow={setShow} props={props} />
     </li>
-  )
-}
-
-export function Pagination({ totalCount, PER_PAGE, getNextPage, currentPage }) {
-  const range = (start: number, end: number) => {
-    return [...Array(end - start + 1)].map((_, i) => start + i)
-  }
-
-  return (
-    <Box py='12'>
-      <Breadcrumb textAlign={"center"}>
-        {range(1, Math.ceil(totalCount / PER_PAGE)).map((number) => (
-          <BreadcrumbItem key={number}>
-            <Text
-              mx='2'
-              fontSize='md'
-              onClick={() => getNextPage(number)}
-              cursor='pointer'
-              fontWeight={currentPage == number ? "bold" : ""}
-              borderBottom={currentPage == number ? "2px solid" : ""}
-            >
-              {number}
-            </Text>
-          </BreadcrumbItem>
-        ))}
-      </Breadcrumb>
-    </Box>
   )
 }
 

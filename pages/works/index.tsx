@@ -14,8 +14,6 @@ import {
   Button,
   Text,
   SimpleGrid,
-  Breadcrumb,
-  BreadcrumbItem,
 } from "@chakra-ui/react"
 import { ChevronRightIcon } from "@chakra-ui/icons"
 
@@ -23,9 +21,10 @@ import Layout from "../../components/layout/Layout"
 import LargeContainer from "../../components/global/LargeContainer"
 import SearchBox from "../../components/works/SearchBox"
 import WorksChart from "../../components/works/WorksChart"
+import Pagenation from "../../components/global/Pagenation"
 
 // 1ページに表示する投稿数
-const PER_PAGE = 4
+const PER_PAGE = 15
 
 export const getStaticProps = async () => {
   const worksData = await client.get({
@@ -155,10 +154,10 @@ const Home: NextPage = ({ worksData }: any) => {
 
         {/* pagination */}
         {allRenderPosts.length > PER_PAGE ? (
-          <Pagination
+          <Pagenation
             totalCount={allRenderPosts.length}
             PER_PAGE={PER_PAGE}
-            getNextPage={clickPagination}
+            props={clickPagination}
             currentPage={currentPage}
           />
         ) : null}
@@ -226,33 +225,6 @@ export function WorksList({ props }) {
         <ChevronRightIcon fontSize={"lg"} />
       </Text>
     </>
-  )
-}
-
-export function Pagination({ totalCount, PER_PAGE, getNextPage, currentPage }) {
-  const range = (start: number, end: number) => {
-    return [...Array(end - start + 1)].map((_, i) => start + i)
-  }
-
-  return (
-    <Box py='12'>
-      <Breadcrumb textAlign={"center"}>
-        {range(1, Math.ceil(totalCount / PER_PAGE)).map((number) => (
-          <BreadcrumbItem key={number}>
-            <Text
-              mx='2'
-              onClick={() => getNextPage(number)}
-              cursor='pointer'
-              fontSize='md'
-              fontWeight={currentPage == number ? "bold" : ""}
-              borderBottom={currentPage == number ? "2px solid" : ""}
-            >
-              {number}
-            </Text>
-          </BreadcrumbItem>
-        ))}
-      </Breadcrumb>
-    </Box>
   )
 }
 
