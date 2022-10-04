@@ -51,7 +51,7 @@ export default function WorksChart({ props }) {
           othersLength++
           break
         default:
-          console.log("データ該当なし")
+          null
       }
     })
     catData.push(
@@ -76,7 +76,7 @@ export default function WorksChart({ props }) {
     ],
     datasets: [
       {
-        label: "Categories",
+        label: "",
         data: getCategoriesLength(),
         backgroundColor: "#90cdf4",
         borderColor: "#1a202c",
@@ -88,8 +88,10 @@ export default function WorksChart({ props }) {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    legend: {
-      display: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
     },
     tooltipItems: [
       "Design",
