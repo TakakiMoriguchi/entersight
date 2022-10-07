@@ -1,0 +1,45 @@
+.swiper-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 2em;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 15px !important;
+  height: 15px !important;
+  border-top: 1px solid #333;
+
+  &::after {
+    display: none;
+  }
+
+  &.swiper-button-disabled {
+    opacity: 0 !important;
+  }
+}
+
+.swiper-button-next {
+  border-right: 1px solid #333;
+  transform: rotate(45deg);
+  right: -12px;
+
+  @media screen and (min-width: 48em) {
+    right: 0;
+  }
+}
+
+.swiper-button-prev {
+  border-left: 1px solid #333;
+  transform: rotate(-45deg);
+  left: -12px;
+
+  @media screen and (min-width: 48em) {
+    left: 0;
+  }
+}
