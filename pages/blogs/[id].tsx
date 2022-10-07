@@ -6,14 +6,6 @@ import { client } from "../../libs/client";
 import style from '../../styles/pages/blogDetail.module.scss'
 import { getMicroCMSData } from './index'
 
-function formatDate(dt: Date) {
-  let date = new Date(dt)
-  var y = date.getFullYear()
-  var m = ('00' + (date.getMonth()+1)).slice(-2)
-  var d = ('00' + date.getDate()).slice(-2)
-  return (y + '/' + m + '/' + d)
-}
-
 const n = Math.floor(Math.random() * 10) + 1
 const output =  "../images/blog/blog_bg" + [n] + ".jpg"
 
@@ -56,7 +48,7 @@ export default function BlogId({ blogData }) {
               fontSize='.85rem'
               pb='5'
             >
-              publishedAt&nbsp;{ formatDate(blogData.publishedAt)}
+              publishedAt&nbsp;{ blogData.publishedAt.substr(0,10) }
             </Text>
           </Box>
           <Box

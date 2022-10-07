@@ -37,8 +37,8 @@ export default function OurServices({ props }) {
           p={5}
         >
           <Stack>
-            { props.map((val) => (
-              <Link href={'/works/'+val.id}>
+            { props.map((val, i) => (
+              <Link href={'/works/'+val.id} key={i}>
                 <a>
                   <Box p={2} key={val.id}>
                     <Text fontWeight='bold'>{ val.title }</Text>

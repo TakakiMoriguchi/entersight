@@ -12,7 +12,6 @@ import {
   Box,
 } from '@chakra-ui/react'
 import { LinkIcon } from '@chakra-ui/icons'
-import Link from 'next/link'
 import SectionTitle from '../global/SectionTitle'
 import style from '../../styles/components/partnerArea.module.scss'
 
