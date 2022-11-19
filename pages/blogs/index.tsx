@@ -27,6 +27,7 @@ export default function Blogs({ blogData, totalCountData }) {
     "Others"
   ]
 
+
   const [totalCount, setTotalCount] = React.useState(totalCountData)
 
   const [dummyBlogData, setDummy] = React.useState(blogData)
@@ -120,6 +121,7 @@ export default function Blogs({ blogData, totalCountData }) {
           totalCount={totalCount}
           PER_PAGE={PER_PAGE}
           props={changeCurrentPage}
+          currentPage={currentPageBlogData}
         />
       </LargeContainer>
     </Layout>
