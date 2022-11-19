@@ -2,7 +2,7 @@ import { Box, Container } from "@chakra-ui/react"
 import { client } from "../libs/client"
 
 import Layout from "../components/layout/Layout"
-import style from "../styles/home.module.scss"
+import style from "../styles/Home.module.scss"
 
 import WorkArea from "../components/home/WorkArea"
 import SkillArea from "../components/home/SkillArea"
