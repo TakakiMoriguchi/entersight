@@ -118,8 +118,13 @@ const Home: NextPage = ({ galleryData, totalCount }: any) => {
             mx='auto'
             my='3em'
           >
+
             <Text textAlign='center' fontSize={18} fontWeight='bold' mb={4}>
               パスワードを入力してください。
+            </Text>
+
+            <Text textAlign='center' fontSize={18} mb={4}>
+              秘密保持契約の観点からパスワードを設定しています。
             </Text>
 
             <InputGroup size='lg'>
