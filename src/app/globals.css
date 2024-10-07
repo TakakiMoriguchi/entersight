@@ -5,6 +5,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --link: #0000EE;
+  --link-hover: #0000EE;
+  --link-visited: #0000EE;
+  --link-active: #0000EE;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +28,21 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:active {
+  color: var(--link-active);
 }
