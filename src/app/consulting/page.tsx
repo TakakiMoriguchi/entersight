@@ -18,7 +18,7 @@ const consulting_data = [
       オフィシャルアカウントの作成、設定など基本的なサポートからLステップなども対応します。<br />
       Lステップを導入すれば、顧客の行動に合わせたメッセージ送信や最適な情報提供、顧客管理を行うことができます。
     `,
-    thumbnail: "/consulting/line_business.png",
+    thumbnail: "/consulting/line.png",
     price: "",
   },
   {
@@ -46,21 +46,27 @@ const consulting_data = [
 export default function Consulting() {
   return (
     <>
-      <div>
+      <div className="container">
         <h3>Consulting</h3>
         <div>
           <p>各社のWEBサービスを使用したDX推進のコンサルティングを行います。</p>
           <p>具体的にはサービスの設定、保守、WEBマーケティング手法の提供などサポートします。</p>
           <p>パソコンやスマホでどんな業務改善ができるのか、といった提案ベースも可能です。</p>
         </div>
-
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {consulting_data.map((v, i) => (
-            <div key={i}>
-              <Image src={v.thumbnail} alt={v.name} width={100} height={100} />
-              <div>{v.name}</div>
-              <div dangerouslySetInnerHTML={{ __html: v.description }} />
-              <div>{v.price}</div>
+            <div key={i} className="border border-white rounded-lg shadow-md p-6 flex flex-col">
+              <div className="w-32 h-32 mx-auto mb-4 relative">
+                <Image
+                  src={v.thumbnail}
+                  alt={v.name}
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+              <h4 className="text-xl font-semibold mb-2">{v.name}</h4>
+              <div className="flex-grow" dangerouslySetInnerHTML={{ __html: v.description }} />
+              {v.price && <div className="mt-4 font-bold">{v.price}</div>}
             </div>
           ))}
         </div>
