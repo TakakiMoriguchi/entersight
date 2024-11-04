@@ -1,7 +1,10 @@
-import Image from "next/image";
+import { Card } from "@/components/Card";
+import ChildPage from "@/components/ChildPage";
+import { Information } from "@/components/Information";
 
 const consulting_data = [
   {
+    category: 3,
     name: "Google Business Profile",
     description: `
       Google Mapに対応したMap Engine Optimization（マップ検索エンジン最適化）のコンサルティングを行います。<br />
@@ -12,6 +15,7 @@ const consulting_data = [
     price: "",
   },
   {
+    category: 3,
     name: "Line Business",
     description: `
       Line Businessに対応したコンサルティングを行います。<br />
@@ -22,6 +26,7 @@ const consulting_data = [
     price: "",
   },
   {
+    category: 3,
     name: "Base",
     description: `
       Baseとは、オンラインショップを構築するためのWEBサービスです。<br />
@@ -32,6 +37,7 @@ const consulting_data = [
     price: "",
   },
   {
+    category: 3,
     name: "Shopify",
     description: `
       Shopifyとは、オンラインショップを構築するためのWEBサービスです。<br />
@@ -40,37 +46,34 @@ const consulting_data = [
     `,
     thumbnail: "/consulting/shopify.png",
     price: "",
+  },
+  {
+    category: 3,
+    name: "baserCMS",
+    description: `
+      導入検討中
+    `,
+    thumbnail: "/consulting/baser_cms.png",
+    price: "",
   }
 ]
 
 export default function Consulting() {
   return (
-    <>
-      <div className="container">
-        <h3>Consulting</h3>
-        <div>
-          <p>各社のWEBサービスを使用したDX推進のコンサルティングを行います。</p>
-          <p>具体的にはサービスの設定、保守、WEBマーケティング手法の提供などサポートします。</p>
-          <p>パソコンやスマホでどんな業務改善ができるのか、といった提案ベースも可能です。</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {consulting_data.map((v, i) => (
-            <div key={i} className="border border-white rounded-lg shadow-md p-6 flex flex-col">
-              <div className="w-32 h-32 mx-auto mb-4 relative">
-                <Image
-                  src={v.thumbnail}
-                  alt={v.name}
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <h4 className="text-xl font-semibold mb-2">{v.name}</h4>
-              <div className="flex-grow" dangerouslySetInnerHTML={{ __html: v.description }} />
-              {v.price && <div className="mt-4 font-bold">{v.price}</div>}
-            </div>
-          ))}
-        </div>
+    <ChildPage>
+      <Information
+        title="Consulting"
+        description={[
+          "各社のWEBサービスを使用したDX推進のコンサルティングを行います。",
+          "具体的にはサービスの設定、保守、WEBマーケティング手法の提供などサポートします。",
+          "パソコンやスマホでどんな業務改善ができるのか、といった提案ベースも可能です。"
+        ]}
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {consulting_data.map((v, i) => (
+          <Card key={i} {...v} />
+        ))}
       </div>
-    </>
+    </ChildPage>
   );
 }

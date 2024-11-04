@@ -1,42 +1,62 @@
-import Image from "next/image";
+import { Card } from "@/components/Card";
+import ChildPage from "@/components/ChildPage";
+import { Information } from "@/components/Information";
 
 const oss_data = [
   {
+    category: 2,
     name: "Dify",
-    category: "生成AI",
     description: "DifyはAIアシスタントを構築するためのオープンソースプラットフォームです。",
     thumbnail: "/oss/dify.png",
-  }
+  },
+  {
+    category: 2,
+    name: "WordPress",
+    description: "WordPressはコンテンツ管理システムです。",
+    thumbnail: "/oss/wordpress.png",
+  },
+  {
+    category: 2,
+    name: "Redmine",
+    description: "導入検討中",
+    thumbnail: "",
+  },
+  {
+    category: 2,
+    name: "Drupal",
+    description: "導入検討中",
+    thumbnail: "",
+  },
+  {
+    category: 2,
+    name: "GitLab",
+    description: "導入検討中",
+    thumbnail: "",
+  },
+  {
+    category: 2,
+    name: "rocket.chat",
+    description: "導入検討中",
+    thumbnail: "",
+  },
 ]
-
-//Redmine
-//Drupal
-//WordPress
-//baserCMS
-//GitLab
-//rocket.chat
 
 export default function OSS() {
   return (
-    <>
-      <div>
-        <h3>OSS</h3>
-        <div>
-          <p>OSSとはオープンソースソフトウェアのことです。</p>
-          <p>公開された機能の範囲内であれば、自由にカスタマイズすることができるので、開発コストを削減することができます。</p>
-          <p>また基本的なセキュリティ対策も有志によって検証されていますし、最新のバージョンアップも簡単です。</p>
-        </div>
-
-        <div>
-          {oss_data.map((v, i) => (
-            <div key={i}>
-              <Image src={v.thumbnail} alt={v.name} width={100} height={100} />
-              <div>{v.name}</div>
-              <div>{v.description}</div>
-            </div>
-          ))}
-        </div>
+    <ChildPage>
+      <Information
+        title="OSS"
+        description={[
+          "OSSとはオープンソースソフトウェアのことです。",
+          "公開された機能の範囲内であれば、自由にカスタマイズすることができるので、開発コストを削減することができます。",
+          "また基本的なセキュリティ対策も有志によって検証されていますし、最新のバージョンアップも簡単です。"
+        ]}
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {oss_data.map((v, i) => (
+          <Card key={i} {...v} />
+        ))}
       </div>
-    </>
+    </ChildPage>
   );
 }
