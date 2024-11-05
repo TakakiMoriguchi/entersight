@@ -2,10 +2,10 @@ import { Card } from "@/components/Card";
 import ChildPage from "@/components/ChildPage";
 import { Information } from "@/components/Information";
 
-export enum WorkType {
-  DEVELOPMENT = 1,
-  WEB_DESIGN = 2,
-}
+// export enum WorkType {
+//   DEVELOPMENT = 1,
+//   WEB_DESIGN = 2,
+// }
 
 const development_data = [
   {
