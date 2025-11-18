@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+---
+
+<Layout title="Contact | Entersight" description="お問い合わせ">
+  <Header />
+  <main>
+    <div class="container">
+      <h1>Contact</h1>
+      <p class="description">お問い合わせフォーム（FormSpree連携予定）</p>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - 200px);
+    padding: 4rem 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    color: #333;
+  }
+
+  .description {
+    color: #666;
+    font-size: 1.1rem;
+  }
+</style>

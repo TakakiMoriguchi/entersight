@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/common/Header.astro';
+import Footer from '../../components/common/Footer.astro';
+import NoteList from '../../features/note/NoteList.astro';
+---
+
+<Layout title="Note | Entersight" description="note記事一覧">
+  <Header />
+  <main>
+    <NoteList />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - 200px);
+    background: var(--color-bg-light);
+  }
+</style>

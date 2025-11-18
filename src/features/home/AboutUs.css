@@ -1,0 +1,27 @@
+/* About Us Section */
+.about-us {
+  background: var(--color-bg-light);
+  padding: 5rem 0;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-content p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.about-content h4 {
+  font-size: 1.5rem;
+  margin: 2.5rem 0 1rem 0;
+  color: var(--color-text-primary);
+}
+
+.about-content strong {
+  color: var(--color-accent);
+  font-weight: 600;
+}

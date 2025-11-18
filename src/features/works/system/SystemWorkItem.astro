@@ -1,0 +1,68 @@
+---
+import type { SystemWork } from '../data/systemWorks';
+
+interface Props {
+  work: SystemWork;
+}
+
+const { work } = Astro.props;
+---
+
+<article class="work-item">
+  <div class="work-header">
+    <img src={work.logo} alt={work.title} class="work-logo" />
+    <div>
+      <div class="work-title-row">
+        <h3 class="work-title">{work.title}</h3>
+        {work.link && (
+          <a href={work.link} target="_blank" rel="noopener noreferrer" class="work-link-icon" aria-label="Visit website">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        )}
+      </div>
+      <div class="work-meta-row">
+        <span class="work-category">{work.category}</span>
+        <span class="work-separator">|</span>
+        <span class="work-status">{work.status}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-description">
+    <h4>概要</h4>
+    <p>{work.description}</p>
+  </div>
+
+  <div class="work-thoughts">
+    <h4>所感</h4>
+    <p>{work.thoughts}</p>
+  </div>
+
+  <div class="work-technologies-section">
+    <h4>使用技術</h4>
+    <div class="work-technologies">
+      {work.technologies.map((tech: string) => (
+        <span class="tech-tag">{tech}</span>
+      ))}
+    </div>
+  </div>
+
+  <div class="work-screenshots" data-work-id={work.id}>
+    <h4>スクリーンショット</h4>
+    <div class="screenshots-thumbnails">
+      {work.screenshots.map((screenshot: string, index: number) => (
+        <img
+          src={screenshot}
+          alt={`${work.title} screenshot ${index + 1}`}
+          data-index={index}
+          data-work-id={work.id}
+          class="screenshot-thumbnail"
+        />
+      ))}
+    </div>
+  </div>
+</article>

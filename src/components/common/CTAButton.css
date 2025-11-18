@@ -1,0 +1,31 @@
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.cta-button.primary {
+  background: var(--color-bg-white);
+  color: var(--color-primary);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: var(--color-bg-white);
+  border: 2px solid var(--color-bg-white);
+}
+
+.cta-section .cta-button.primary {
+  background: var(--color-bg-white);
+  color: var(--color-primary);
+}
+
+.cta-section .cta-button.secondary {
+  background: transparent;
+  color: var(--color-bg-white);
+  border: 2px solid var(--color-bg-white);
+}

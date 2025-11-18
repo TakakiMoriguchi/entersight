@@ -1,0 +1,127 @@
+/* Footer */
+@font-face {
+  font-family: 'DIN Condensed';
+  src: url('/din_condensed_bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+.footer {
+  background: var(--color-text-primary);
+  margin-top: auto;
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-logo {
+  font-family: 'DIN Condensed', sans-serif;
+  font-size: clamp(2rem, 12vw, 10rem);
+  font-weight: bold;
+  margin: 0;
+  color: var(--color-bg-white);
+  letter-spacing: 0.28em;
+  text-align: center;
+  text-indent: 0.28em;
+  width: 100%;
+  line-height: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+.footer-info-group {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 900px;
+}
+
+.footer-info,
+.footer-business-group,
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-info-title,
+.footer-business-title,
+.footer-nav-title {
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: bold;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer-company,
+.footer-address {
+  margin: 0.5rem 0 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-business-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-business-list li {
+  margin: 0.5rem 0 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-nav a {
+  margin: 0.5rem 0 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  line-height: 1.6;
+  display: inline-block;
+}
+
+.footer-nav a:hover {
+  color: var(--color-bg-white);
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin: 2rem 0 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1rem 1.5rem;
+  }
+
+  .footer-logo {
+    font-size: 2rem;
+  }
+
+  .footer-nav {
+    gap: 1.5rem;
+  }
+}

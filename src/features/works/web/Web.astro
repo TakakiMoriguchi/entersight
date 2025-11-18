@@ -1,0 +1,13 @@
+---
+import WebWorkCard from './WebWorkCard.astro';
+import { webWorks } from '../data/webWorks';
+---
+
+<section id="web" class="works-section">
+  <h2 class="section-title">Web</h2>
+  <div class="web-works-grid">
+    {webWorks.map((work) => (
+      <WebWorkCard work={work} />
+    ))}
+  </div>
+</section>

@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Footer from '../components/common/Footer.astro';
+import CTA from '../components/common/CTA.astro';
+import Hero from '../features/home/Hero.astro';
+import AboutUs from '../features/home/AboutUs.astro';
+import CoreBusiness from '../features/home/CoreBusiness.astro';
+import SupportingServices from '../features/home/SupportingServices.astro';
+import DesignPhilosophy from '../features/home/DesignPhilosophy.astro';
+import Note from '../features/home/Note.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Entersight | システム開発・OSS導入・デザイン"
+  description="業務効率化とビジネスの成長を支えるシステム開発とOSS導入を提供します。デザインから設計、インフラ構築、開発まで、ワンストップでサポート。"
+>
+  <main>
+    <Hero />
+    <AboutUs />
+    <CoreBusiness />
+    <CTA />
+    <SupportingServices />
+    <DesignPhilosophy />
+    <Note />
+  </main>
+  <Footer />
 </Layout>
+
+<style>
+  main {
+    width: 100%;
+  }
+</style>

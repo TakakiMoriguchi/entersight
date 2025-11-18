@@ -1,0 +1,41 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-content">
+    <h2 class="footer-logo">ENTERSIGHT</h2>
+
+    <div class="footer-info-group">
+      <div class="footer-info">
+        <p class="footer-info-title">会社情報</p>
+        <p class="footer-company">エンターサイト</p>
+        <p class="footer-address">〒530-0012 大阪府大阪市北区芝田3F</p>
+      </div>
+
+      <div class="footer-business-group">
+        <p class="footer-business-title">事業概要</p>
+        <ul class="footer-business-list">
+          <li>システム開発</li>
+          <li>OSS導入</li>
+          <li>デザイン制作</li>
+        </ul>
+      </div>
+
+      <nav class="footer-nav">
+        <p class="footer-nav-title">リンク</p>
+        <a href="/note">Note</a>
+        <a href="/works">実績</a>
+        <a href="/catalog">カタログ</a>
+      </nav>
+    </div>
+
+    <p class="footer-copyright">
+      &copy; {currentYear} Entersight. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  @import "./Footer.css";
+</style>

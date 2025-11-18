@@ -1,0 +1,13 @@
+---
+import SystemWorkItem from './SystemWorkItem.astro';
+import { systemWorks } from '../data/systemWorks';
+---
+
+<section id="system" class="works-section">
+  <h2 class="section-title">System</h2>
+  <div class="works-grid">
+    {systemWorks.map((work) => (
+      <SystemWorkItem work={work} />
+    ))}
+  </div>
+</section>

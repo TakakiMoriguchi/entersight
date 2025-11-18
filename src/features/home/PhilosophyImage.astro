@@ -1,0 +1,433 @@
+---
+import "./PhilosophyImage.css";
+
+// Generate a unique ID for this component instance
+const componentId = `philosophy-image-${Math.random().toString(36).substr(2, 9)}`;
+
+// Define available colors
+const colors = [
+  "var(--color-dark-tone-1)",
+  "var(--color-dark-tone-2)",
+  "var(--color-dark-tone-3)",
+  "var(--color-dark-tone-4)",
+  "var(--color-dark-tone-5)",
+  "var(--color-dark-tone-6)",
+  "var(--color-dark-tone-7)",
+  "var(--color-dark-tone-8)",
+  "var(--color-dark-tone-9)",
+  "var(--color-dark-tone-10)",
+];
+
+// Shuffle colors
+const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+
+// Random rotation (0 or 90 degrees)
+const getRotation = () => (Math.random() > 0.5 ? 90 : 0);
+
+// Random position (adjusted to ensure visibility within container)
+const getPosition = () => ({
+  top: `${Math.random() * 80}%`,
+  left: `${Math.random() * 80}%`,
+});
+
+// Generate shapes with consistent width/height properties
+// Need more colors for additional shapes
+const extraColors = [
+  "var(--color-dark-tone-1)",
+  "var(--color-dark-tone-2)",
+  "var(--color-dark-tone-3)",
+  "var(--color-dark-tone-4)",
+  "var(--color-dark-tone-5)",
+  "var(--color-dark-tone-6)",
+];
+const allColors = [
+  ...shuffledColors,
+  ...extraColors.sort(() => Math.random() - 0.5),
+];
+
+const shapes = [
+  // Vertical rectangles (3) - one very long
+  {
+    type: "rect-vertical",
+    width: Math.random() * 40 + 20,
+    height: Math.random() * 150 + 100,
+    ...getPosition(),
+    rotate: getRotation(),
+    color: allColors[0],
+  },
+  {
+    type: "rect-vertical",
+    width: Math.random() * 40 + 20,
+    height: Math.random() * 150 + 100,
+    ...getPosition(),
+    rotate: getRotation(),
+    color: allColors[2],
+  },
+  {
+    type: "rect-vertical",
+    width: Math.random() * 40 + 20,
+    height: Math.random() * 300 + 400,
+    ...getPosition(),
+    rotate: getRotation(),
+    color: allColors[3],
+  },
+
+  // Horizontal rectangles (3) - one very long
+  {
+    type: "rect-horizontal",
+    width: Math.random() * 150 + 100,
+    height: Math.random() * 40 + 20,
+    ...getPosition(),
+    rotate: getRotation(),
+    color: allColors[4],
+  },
+  {
+    type: "rect-horizontal",
+    width: Math.random() * 150 + 100,
+    height: Math.random() * 40 + 20,
+    ...getPosition(),
+    rotate: getRotation(),
+    color: allColors[5],
+  },
+  {
+    type: "rect-horizontal",
+    width: Math.random() * 300 + 500,
+    height: Math.random() * 40 + 20,
+    ...getPosition(),
+    rotate: getRotation(),
+    color: allColors[7],
+  },
+
+  // Triangles (2) - equilateral triangles
+  ...(() => {
+    const size1 = Math.random() * 100 + 50;
+    const size2 = Math.random() * 100 + 50;
+    return [
+      {
+        type: "triangle",
+        width: size1 * 2,
+        height: size1 * Math.sqrt(3),
+        ...getPosition(),
+        rotate: getRotation(),
+        color: allColors[8],
+      },
+      {
+        type: "triangle",
+        width: size2 * 2,
+        height: size2 * Math.sqrt(3),
+        ...getPosition(),
+        rotate: getRotation(),
+        color: allColors[9],
+      },
+    ];
+  })(),
+
+  // Circles (2) - perfect circles
+  ...(() => {
+    const size1 = Math.random() * 120 + 60;
+    const size2 = Math.random() * 120 + 60;
+    return [
+      {
+        type: "circle",
+        width: size1,
+        height: size1,
+        ...getPosition(),
+        rotate: getRotation(),
+        color: allColors[10],
+      },
+      {
+        type: "circle",
+        width: size2,
+        height: size2,
+        ...getPosition(),
+        rotate: getRotation(),
+        color: allColors[11],
+      },
+    ];
+  })(),
+
+  // Squares (2) - perfect squares
+  ...(() => {
+    const size1 = Math.random() * 100 + 50;
+    const size2 = Math.random() * 100 + 50;
+    return [
+      {
+        type: "square",
+        width: size1,
+        height: size1,
+        ...getPosition(),
+        rotate: getRotation(),
+        color: allColors[12],
+      },
+      {
+        type: "square",
+        width: size2,
+        height: size2,
+        ...getPosition(),
+        rotate: getRotation(),
+        color: allColors[13],
+      },
+    ];
+  })(),
+].flat();
+---
+
+<div class="philosophy-image-canvas" id={componentId}>
+  <div class="countdown-timer"></div>
+  <div class="shapes-container">
+    {
+      shapes.map((shape) => {
+        if (shape.type === "triangle") {
+          return (
+            <div
+              class={`shape shape-triangle`}
+              style={`
+              top: ${shape.top};
+              left: ${shape.left};
+              width: 0;
+              height: 0;
+              border-left: ${shape.width / 2}px solid transparent;
+              border-right: ${shape.width / 2}px solid transparent;
+              border-bottom: ${shape.height}px solid ${shape.color};
+              transform: rotate(${shape.rotate}deg);
+            `}
+            />
+          );
+        }
+        return (
+          <div
+            class={`shape shape-${shape.type}`}
+            style={`
+            top: ${shape.top};
+            left: ${shape.left};
+            width: ${shape.width}px;
+            height: ${shape.height}px;
+            background-color: ${shape.color};
+            transform: rotate(${shape.rotate}deg);
+          `}
+          />
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  function initPhilosophyImage() {
+    const canvas = document.querySelector(".philosophy-image-canvas");
+    const timerElement = document.querySelector(".countdown-timer");
+    const shapesContainer = document.querySelector(".shapes-container");
+
+    if (!canvas || !timerElement || !shapesContainer) return;
+
+    let countdown = 10;
+
+    function updateTimer() {
+      if (!timerElement) return;
+      timerElement.textContent = countdown.toString();
+    }
+
+    function generateShapes() {
+      // Define available colors
+      const colors = [
+        "var(--color-dark-tone-1)",
+        "var(--color-dark-tone-2)",
+        "var(--color-dark-tone-3)",
+        "var(--color-dark-tone-4)",
+        "var(--color-dark-tone-5)",
+        "var(--color-dark-tone-6)",
+        "var(--color-dark-tone-7)",
+        "var(--color-dark-tone-8)",
+        "var(--color-dark-tone-9)",
+        "var(--color-dark-tone-10)",
+      ];
+
+      const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+      const extraColors = colors.slice(0, 6).sort(() => Math.random() - 0.5);
+      const allColors = [...shuffledColors, ...extraColors];
+
+      const getRotation = () => (Math.random() > 0.5 ? 90 : 0);
+      const getPosition = () => ({
+        top: `${Math.random() * 80}%`,
+        left: `${Math.random() * 80}%`,
+      });
+
+      const shapes = [
+        // Vertical rectangles (3) - one very long
+        {
+          type: "rect-vertical",
+          width: Math.random() * 40 + 20,
+          height: Math.random() * 150 + 100,
+          ...getPosition(),
+          rotate: getRotation(),
+          color: allColors[0],
+        },
+        {
+          type: "rect-vertical",
+          width: Math.random() * 40 + 20,
+          height: Math.random() * 150 + 100,
+          ...getPosition(),
+          rotate: getRotation(),
+          color: allColors[2],
+        },
+        {
+          type: "rect-vertical",
+          width: Math.random() * 40 + 20,
+          height: Math.random() * 300 + 400,
+          ...getPosition(),
+          rotate: getRotation(),
+          color: allColors[3],
+        },
+
+        // Horizontal rectangles (3) - one very long
+        {
+          type: "rect-horizontal",
+          width: Math.random() * 150 + 100,
+          height: Math.random() * 40 + 20,
+          ...getPosition(),
+          rotate: getRotation(),
+          color: allColors[4],
+        },
+        {
+          type: "rect-horizontal",
+          width: Math.random() * 150 + 100,
+          height: Math.random() * 40 + 20,
+          ...getPosition(),
+          rotate: getRotation(),
+          color: allColors[5],
+        },
+        {
+          type: "rect-horizontal",
+          width: Math.random() * 300 + 500,
+          height: Math.random() * 40 + 20,
+          ...getPosition(),
+          rotate: getRotation(),
+          color: allColors[7],
+        },
+
+        // Triangles (2) - equilateral
+        ...(() => {
+          const size1 = Math.random() * 100 + 50;
+          const size2 = Math.random() * 100 + 50;
+          return [
+            {
+              type: "triangle",
+              width: size1 * 2,
+              height: size1 * Math.sqrt(3),
+              ...getPosition(),
+              rotate: getRotation(),
+              color: allColors[8],
+            },
+            {
+              type: "triangle",
+              width: size2 * 2,
+              height: size2 * Math.sqrt(3),
+              ...getPosition(),
+              rotate: getRotation(),
+              color: allColors[9],
+            },
+          ];
+        })(),
+
+        // Circles (2) - perfect circles
+        ...(() => {
+          const size1 = Math.random() * 120 + 60;
+          const size2 = Math.random() * 120 + 60;
+          return [
+            {
+              type: "circle",
+              width: size1,
+              height: size1,
+              ...getPosition(),
+              rotate: getRotation(),
+              color: allColors[10],
+            },
+            {
+              type: "circle",
+              width: size2,
+              height: size2,
+              ...getPosition(),
+              rotate: getRotation(),
+              color: allColors[11],
+            },
+          ];
+        })(),
+
+        // Squares (2) - perfect squares
+        ...(() => {
+          const size1 = Math.random() * 100 + 50;
+          const size2 = Math.random() * 100 + 50;
+          return [
+            {
+              type: "square",
+              width: size1,
+              height: size1,
+              ...getPosition(),
+              rotate: getRotation(),
+              color: allColors[12],
+            },
+            {
+              type: "square",
+              width: size2,
+              height: size2,
+              ...getPosition(),
+              rotate: getRotation(),
+              color: allColors[13],
+            },
+          ];
+        })(),
+      ].flat();
+
+      if (!shapesContainer) return;
+      shapesContainer.innerHTML = "";
+
+      shapes.forEach((shape) => {
+        const div = document.createElement("div");
+        div.className = `shape shape-${shape.type}`;
+
+        if (shape.type === "triangle") {
+          div.style.cssText = `
+            top: ${shape.top};
+            left: ${shape.left};
+            width: 0;
+            height: 0;
+            border-left: ${shape.width / 2}px solid transparent;
+            border-right: ${shape.width / 2}px solid transparent;
+            border-bottom: ${shape.height}px solid ${shape.color};
+            transform: rotate(${shape.rotate}deg);
+          `;
+        } else {
+          div.style.cssText = `
+            top: ${shape.top};
+            left: ${shape.left};
+            width: ${shape.width}px;
+            height: ${shape.height}px;
+            background-color: ${shape.color};
+            transform: rotate(${shape.rotate}deg);
+          `;
+        }
+
+        shapesContainer.appendChild(div);
+      });
+    }
+
+    updateTimer();
+
+    setInterval(() => {
+      countdown--;
+      updateTimer();
+
+      if (countdown === 0) {
+        generateShapes();
+        countdown = 10;
+      }
+    }, 1000);
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPhilosophyImage);
+  } else {
+    initPhilosophyImage();
+  }
+</script>

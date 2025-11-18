@@ -1,0 +1,23 @@
+---
+import CTAButton from '../../components/common/CTAButton';
+import './Hero.css';
+---
+
+<section class="hero">
+  <div class="hero-background"></div>
+  <div class="hero-content">
+    <div class="hero-header">
+      <img src="/symbol.svg" alt="Entersight Symbol" class="hero-symbol" />
+      <h1 class="hero-title">ENTERSIGHT</h1>
+    </div>
+    <p class="hero-subtitle">
+      業務効率化とビジネスの成長を支えるシステム開発とOSS導入を提供します。<br />
+      デザインから設計、インフラ構築、開発まで、ワンストップでサポート。<br />
+      複雑なプロジェクトも迅速かつ丁寧に対応いたします。
+    </p>
+    <div class="hero-cta">
+      <CTAButton href="/contact" variant="primary" client:load>お問い合わせ</CTAButton>
+      <CTAButton href="/works" variant="secondary" client:load>実績を見る</CTAButton>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+/* Supporting Services Section */
+.supporting-services {
+  background: var(--color-bg-light);
+  padding: 5rem 0;
+}
+
+.service-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.service-image {
+  display: flex;
+  justify-content: center;
+}
+
+.service-image img {
+  height: auto;
+  border-radius: 8px;
+}
+
+.service-text p {
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: var(--color-text-secondary);
+}
+
+.service-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.service-detail-item h4 {
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--color-accent);
+}
+
+.service-detail-item p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .supporting-services {
+    padding: 3rem 0;
+  }
+}

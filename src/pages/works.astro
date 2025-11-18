@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import WorksContent from '../features/works/Works.astro';
+---
+
+<Layout
+  title="実績 | Entersight"
+  description="エンターサイトの開発実績をご紹介します。システム開発、Webアプリケーション、デザインなど、幅広いプロジェクトを手がけています。"
+>
+  <Header />
+  <main>
+    <WorksContent />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+  }
+</style>

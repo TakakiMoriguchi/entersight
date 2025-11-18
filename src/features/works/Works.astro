@@ -1,0 +1,93 @@
+---
+import './Works.css';
+import System from './system/System.astro';
+import Web from './web/Web.astro';
+import './web/Web.css';
+---
+
+<div class="works-container">
+  <!-- Sticky Navigation -->
+  <nav class="works-nav">
+    <a href="#system" class="nav-link">System</a>
+    <a href="#web" class="nav-link">Web</a>
+  </nav>
+
+  <System />
+  <Web />
+
+  <!-- Modal for enlarged images -->
+  <div class="image-modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" alt="Enlarged view" />
+  </div>
+</div>
+
+<script>
+  // Modal functionality for thumbnails
+  const modal = document.querySelector('.image-modal') as HTMLElement;
+  const modalImg = modal?.querySelector('.modal-content') as HTMLImageElement;
+  const modalClose = modal?.querySelector('.modal-close') as HTMLElement;
+
+  document.querySelectorAll('.screenshot-thumbnail').forEach(img => {
+    img.addEventListener('click', (e) => {
+      const image = e.currentTarget as HTMLImageElement;
+      if (modal && modalImg) {
+        modal.style.display = 'block';
+        modalImg.src = image.src;
+      }
+    });
+  });
+
+  modalClose?.addEventListener('click', () => {
+    if (modal) modal.style.display = 'none';
+  });
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // Active navigation based on scroll position
+  const sections = document.querySelectorAll('.works-section');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function updateActiveNav() {
+    let current = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const sectionHeight = section.clientHeight;
+
+      if (sectionTop <= 200 && sectionTop + sectionHeight > 200) {
+        current = section.getAttribute('id') || '';
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav(); // Initialize on load
+
+  // Smooth scroll on navigation click
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href')?.substring(1);
+      const targetSection = document.getElementById(targetId || '');
+
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script>

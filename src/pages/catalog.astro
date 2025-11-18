@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import Catalog from '../features/catalog/Catalog.astro';
+---
+
+<Layout title="カタログ | Entersight" description="エンターサイトのカタログ。動くJavascriptやオリジナルコンテンツを紹介します。">
+  <Header />
+  <main>
+    <Catalog />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+  }
+</style>

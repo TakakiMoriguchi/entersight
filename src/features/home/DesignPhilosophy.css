@@ -1,0 +1,47 @@
+/* Design Philosophy Section */
+.design-philosophy {
+  background: var(--color-bg-white);
+  padding: 5rem 0;
+}
+
+.philosophy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.philosophy-image {
+  display: flex;
+  justify-content: center;
+}
+
+.philosophy-image img {
+  height: auto;
+  border-radius: 8px;
+}
+
+.philosophy-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.philosophy-item h4 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+  color: var(--color-accent);
+}
+
+.philosophy-item p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .design-philosophy {
+    padding: 3rem 0;
+  }
+}

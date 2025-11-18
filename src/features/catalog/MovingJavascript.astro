@@ -1,0 +1,183 @@
+---
+import "./MovingJavascript.css";
+import { AnimationList } from "./animationList";
+import { AnimationChildren } from "./animationListChildren";
+---
+
+<section id="moving-javascript" class="catalog-section">
+  <div class="section-header">
+    <h2 class="section-title">動くJavascript</h2>
+    <span class="section-subtitle">出典: 動くWebデザインアイディア帳</span>
+  </div>
+
+  <!-- 機能にかかわる動き -->
+  <div class="category-section">
+    <h3 class="category-title">機能にかかわる動き</h3>
+    <div class="card-grid">
+      {
+        AnimationList.fun.map((item) => (
+          <button
+            class="animation-card"
+            data-path={item.path}
+            data-tag={item.tag}
+          >
+            <div class="card-icon">
+              <img
+                src={`/catalog/moving_javascript/${item.path}.svg`}
+                alt={item.name}
+                width="80"
+                height="80"
+              />
+            </div>
+            <p class="card-title">{item.name}</p>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- 印象にかかわる動き -->
+  <div class="category-section">
+    <h3 class="category-title">印象にかかわる動き</h3>
+    <div class="card-grid">
+      {
+        AnimationList.imp.map((item) => (
+          <button
+            class="animation-card"
+            data-path={item.path}
+            data-tag={item.tag}
+          >
+            <div class="card-icon">
+              <img
+                src={`/catalog/moving_javascript/${item.path}.svg`}
+                alt={item.name}
+                width="80"
+                height="80"
+              />
+            </div>
+            <p class="card-title">{item.name}</p>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- 詳細カードリスト -->
+  <div class="detail-sections">
+    {
+      AnimationChildren.map((category) => (
+        <div class="detail-category" id={category.tag}>
+          <h4 class="detail-category-title">{category.title}</h4>
+          <div class="detail-card-grid">
+            {category.data.map((item) => (
+              <button
+                class="detail-card"
+                data-id={item.id}
+                data-name={item.name}
+                data-path={item.path}
+              >
+                <div class="detail-card-icon">
+                  <img
+                    src={`/catalog/moving_javascript/${item.path}.svg`}
+                    alt={item.name}
+                    width="60"
+                    height="60"
+                  />
+                </div>
+                <p class="detail-card-title">{item.name}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- Drawer for CodePen -->
+<div class="codepen-drawer">
+  <div class="drawer-overlay"></div>
+  <div class="drawer-content">
+    <button class="drawer-close">&times;</button>
+    <div class="drawer-header">
+      <h3 class="drawer-title"></h3>
+    </div>
+    <div class="drawer-body">
+      <iframe class="codepen-iframe" scrolling="no"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scroll to category when clicking category cards
+  const categoryCards = document.querySelectorAll(".animation-card[data-tag]");
+  categoryCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const tag = card.getAttribute("data-tag");
+      const targetSection = document.getElementById(tag || "");
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+
+  // Open drawer when clicking detail cards
+  const detailCards = document.querySelectorAll(".detail-card[data-id]");
+  const drawer = document.querySelector(".codepen-drawer") as HTMLElement;
+  const drawerOverlay = document.querySelector(
+    ".drawer-overlay"
+  ) as HTMLElement;
+  const drawerClose = document.querySelector(".drawer-close") as HTMLElement;
+  const drawerTitle = document.querySelector(".drawer-title") as HTMLElement;
+  const codepenIframe = document.querySelector(
+    ".codepen-iframe"
+  ) as HTMLIFrameElement;
+  const catalogContainer = document.querySelector(
+    ".catalog-container"
+  ) as HTMLElement;
+
+  const baseUrl1 = "https://codepen.io/qnamigoi/embed/";
+  const baseUrl2 = "?default-tab=result%2Chtml";
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  detailCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const id = card.getAttribute("data-id");
+      const name = card.getAttribute("data-name");
+
+      if (id && name) {
+        // Set title
+        drawerTitle.textContent = name;
+
+        // Set iframe src
+        codepenIframe.src = `${baseUrl1}${id}${baseUrl2}`;
+
+        // Open drawer
+        drawer.classList.add("open");
+        catalogContainer.classList.add("drawer-open");
+
+        // Only prevent body scroll on mobile
+        if (isMobile()) {
+          document.body.style.overflow = "hidden";
+        }
+      }
+    });
+  });
+
+  // Close drawer
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    catalogContainer.classList.remove("drawer-open");
+    document.body.style.overflow = "";
+    codepenIframe.src = "";
+  }
+
+  drawerClose.addEventListener("click", closeDrawer);
+  drawerOverlay.addEventListener("click", closeDrawer);
+</script>

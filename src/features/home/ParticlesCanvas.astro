@@ -1,0 +1,181 @@
+---
+import "./ParticlesCanvas.css";
+---
+
+<div class="particles-canvas-container">
+  <canvas id="particles-canvas"></canvas>
+</div>
+
+<script>
+  function initParticles() {
+    const canvas = document.getElementById(
+      "particles-canvas"
+    ) as HTMLCanvasElement;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Set canvas size
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    // Service logos
+    const logos = [
+      "/service_logos/figma.svg",
+      "/service_logos/github.svg",
+      "/service_logos/google-apps-script.svg",
+      "/service_logos/google-spreadsheet.svg",
+      "/service_logos/line-messenger.svg",
+      "/service_logos/netlify-icon.svg",
+      "/service_logos/notion-icon.svg",
+      "/service_logos/sendgrid.svg",
+      "/service_logos/vercel.svg",
+    ];
+
+    // Particle class
+    class Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      logo: HTMLImageElement;
+
+      constructor(logoSrc: string) {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 1;
+        this.vy = (Math.random() - 0.5) * 1;
+        this.radius = 50; // Fixed radius for consistent logo size
+
+        // Load logo image
+        this.logo = new Image();
+        this.logo.src = logoSrc;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off walls
+        if (this.x < this.radius || this.x > canvas.width - this.radius) {
+          this.vx *= -1;
+        }
+        if (this.y < this.radius || this.y > canvas.height - this.radius) {
+          this.vy *= -1;
+        }
+
+        // Keep within bounds
+        this.x = Math.max(
+          this.radius,
+          Math.min(canvas.width - this.radius, this.x)
+        );
+        this.y = Math.max(
+          this.radius,
+          Math.min(canvas.height - this.radius, this.y)
+        );
+      }
+
+      draw() {
+        if (!ctx) return;
+
+        // Draw circle
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+        ctx.fill();
+        ctx.strokeStyle = "rgba(100, 100, 100, 0.2)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Draw logo in the center with aspect ratio preserved
+        if (this.logo.complete && this.logo.naturalWidth > 0) {
+          const maxSize = this.radius * 1.0;
+          const aspectRatio = this.logo.naturalWidth / this.logo.naturalHeight;
+
+          let width = maxSize;
+          let height = maxSize;
+
+          if (aspectRatio > 1) {
+            // Wider than tall
+            height = maxSize / aspectRatio;
+          } else {
+            // Taller than wide
+            width = maxSize * aspectRatio;
+          }
+
+          ctx.drawImage(
+            this.logo,
+            this.x - width / 2,
+            this.y - height / 2,
+            width,
+            height
+          );
+        }
+      }
+    }
+
+    // Create particles with logos
+    const particles: Particle[] = [];
+    logos.forEach((logoSrc) => {
+      particles.push(new Particle(logoSrc));
+    });
+
+    // Draw connections between particles
+    function drawConnections() {
+      if (!ctx) return;
+
+      const maxDistance = 300;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < maxDistance) {
+            const opacity = 1 - distance / maxDistance;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(100, 100, 100, ${opacity * 0.5})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // Animation loop
+    function animate() {
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw connections first (behind circles)
+      drawConnections();
+
+      // Update and draw particles
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initParticles);
+  } else {
+    initParticles();
+  }
+</script>
