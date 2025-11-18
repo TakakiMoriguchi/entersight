@@ -1,0 +1,172 @@
+---
+import './ContactForm.css';
+
+const formspreeEndpoint = import.meta.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+---
+
+<div class="contact-container">
+  <div class="contact-header">
+    <h1 class="contact-title">Contact</h1>
+    <p class="contact-description">お問い合わせフォーム</p>
+  </div>
+
+  <form id="contact-form" class="contact-form" data-formspree-endpoint={formspreeEndpoint}>
+    <div class="form-group">
+      <label for="name" class="form-label">お名前 <span class="required">*</span></label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-input"
+        required
+      />
+      <span class="error-message" id="name-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">メールアドレス <span class="required">*</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="form-input"
+        required
+      />
+      <span class="error-message" id="email-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="phone" class="form-label">電話番号 <span class="required">*</span></label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        class="form-input"
+        required
+      />
+      <span class="error-message" id="phone-error"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="message" class="form-label">お問い合わせ内容 <span class="required">*</span></label>
+      <textarea
+        id="message"
+        name="message"
+        class="form-textarea"
+        rows="6"
+        required
+      ></textarea>
+      <span class="error-message" id="message-error"></span>
+    </div>
+
+    <button type="submit" class="submit-button" id="submit-button">
+      送信する
+    </button>
+
+    <div class="form-status" id="form-status"></div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+  const formStatus = document.getElementById('form-status') as HTMLDivElement;
+
+  // Validation functions
+  function validateEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function validatePhone(phone: string): boolean {
+    // 日本の電話番号形式（ハイフンあり・なし両方対応）
+    const phoneRegex = /^(0\d{1,4}-?\d{1,4}-?\d{4}|0\d{9,10})$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  }
+
+  // Get endpoint from data attribute
+  const formspreeEndpoint = form.getAttribute('data-formspree-endpoint') || '';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(el => {
+      el.textContent = '';
+    });
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    // Get form data
+    const formData = new FormData(form);
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+
+    // Client-side validation
+    let hasError = false;
+
+    if (!validateEmail(email)) {
+      const emailError = document.getElementById('email-error');
+      if (emailError) {
+        emailError.textContent = '正しいメールアドレスの形式で入力してください';
+      }
+      hasError = true;
+    }
+
+    if (!validatePhone(phone)) {
+      const phoneError = document.getElementById('phone-error');
+      if (phoneError) {
+        phoneError.textContent = '正しい電話番号の形式で入力してください（例: 03-1234-5678）';
+      }
+      hasError = true;
+    }
+
+    if (hasError) {
+      return;
+    }
+
+    // Disable submit button
+    submitButton.disabled = true;
+    submitButton.textContent = '送信中...';
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        formStatus.textContent = 'お問い合わせありがとうございます。送信が完了しました。';
+        formStatus.className = 'form-status success';
+        form.reset();
+      } else {
+        const data = await response.json();
+
+        if (data.errors) {
+          // Display field-specific errors
+          data.errors.forEach((error: any) => {
+            const field = error.field;
+            const errorElement = document.getElementById(`${field}-error`);
+            if (errorElement) {
+              errorElement.textContent = error.message;
+            }
+          });
+        }
+
+        formStatus.textContent = '送信中にエラーが発生しました。もう一度お試しください。';
+        formStatus.className = 'form-status error';
+      }
+    } catch (error) {
+      formStatus.textContent = '送信中にエラーが発生しました。もう一度お試しください。';
+      formStatus.className = 'form-status error';
+      console.error('Error:', error);
+    } finally {
+      // Re-enable submit button
+      submitButton.disabled = false;
+      submitButton.textContent = '送信する';
+    }
+  });
+</script>
